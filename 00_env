@@ -1,0 +1,26 @@
+#author: Sen Du
+#email: dusen@gennlife.com
+#created: 2023-04-16 19:00:00
+#updated: 2023-04-16 19:00:00
+
+
+# 以下为安装 Cloudera 所需的环境变量
+## 控制日志颜色：灰色
+export CSTART='\033[36m'
+export CEND='\033[0m'
+
+## 文件名称
+export FILENAME='cloudera-parcels.6.3.1.20230420.tar.gz'
+
+## 中控机 IP：作为 cm、ntp 的服务端
+export LocalIp='200.200.13.11'
+
+## httpd server address
+export HTTPD_SERVER='http://200.200.13.11/cloudera-parcels'
+
+## MySQL
+export MYSQL_HOST='200.200.13.2'
+export MYSQL_ROOT_PASSWD='@GennLife2015'
+
+## DataNode默认数据根目录
+export DATA_ROOT='/data'

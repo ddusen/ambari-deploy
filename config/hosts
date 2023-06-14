@@ -1,0 +1,11 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+200.200.13.2  cdhmysql
+200.200.13.11 cdhmaster hadoop-namenode-01
+200.200.13.12 cdhnode01 hadoop-namenode-02
+200.200.13.13 cdhnode02
+200.200.13.14 cdhnode03 
+
+
+200.200.13.11 hiveserver2-ha

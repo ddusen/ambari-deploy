@@ -1,0 +1,15 @@
+#在与上级时间服务器联系时所花费的时间，记录在driftfile参数后面的文件
+driftfile /var/lib/ntp/drift
+#默认关闭所有的 NTP 联机服务
+restrict default ignore
+restrict -6 default ignore
+#如从loopback网口请求，则允许NTP的所有操作
+restrict 127.0.0.1
+restrict -6 ::1
+#使用指定的时间服务器
+server TODO_SERVER_IP
+#允许指定的时间服务器查询本时间服务器的信息
+restrict TODO_SERVER_IP nomodify notrap nopeer noquery
+#其它认证信息
+includefile /etc/ntp/crypto/pw
+keys /etc/ntp/keys

@@ -1,0 +1,6 @@
+#IPAddr Hostname Passwd
+200.200.13.2  cdhmysql unknown
+200.200.13.11 cdhmaster unknown
+200.200.13.12 cdhnode01 unknown
+200.200.13.13 cdhnode02 unknown
+200.200.13.14 cdhnode03 unknown
