@@ -48,7 +48,9 @@ function restart_chrony() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
-        ssh -n $ipaddr "systemctl start chronyd" || true
+        # 设置 chrony timezone
+        ssh -n $ipaddr "timedatectl set-timezone 'Asia/Shanghai'" || true
+        ssh -n $ipaddr "systemctl restart chronyd" || true
         ssh -n $ipaddr "systemctl enable --now chronyd.service" || true
     done
 }
