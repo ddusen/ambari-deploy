@@ -15,11 +15,11 @@ function install_base() {
         echo -e "$CSTART>>>>$ipaddr$CEND"
         scp rpms/epel-release-8-19.el8.noarch.rpm $ipaddr:/tmp/
         scp rpms/htop-3.2.1-1.el8.x86_64.rpm $ipaddr:/tmp/
-        scp rpms/iiotop-0.6-17.el8.noarch.rpm $ipaddr:/tmp/
+        scp rpms/iotop-0.6-17.el8.noarch.rpm $ipaddr:/tmp/
 
         ssh -n $ipaddr "rpm -Uvh /tmp/epel-release-8-19.el8.noarch.rpm" || true
         ssh -n $ipaddr "rpm -Uvh /tmp/htop-3.2.1-1.el8.x86_64.rpm" || true
-        ssh -n $ipaddr "rpm -Uvh /tmp/iiotop-0.6-17.el8.noarch.rpm" || true
+        ssh -n $ipaddr "rpm -Uvh /tmp/iotop-0.6-17.el8.noarch.rpm" || true
         
         ssh -n $ipaddr "rm -rf /etc/yum.repos.d/epel*"
         ssh -n $ipaddr "yum install -y vim wget net-tools" || true
