@@ -59,9 +59,6 @@ function main() {
     echo -e "$CSTART>>backup_chrony_config$CEND"
     backup_chrony_config
     
-    echo -e "$CSTART>>remove_old_chrony$CEND"
-    remove_old_chrony
-
     echo -e "$CSTART>>install_chrony$CEND"
     install_chrony
 
@@ -73,9 +70,6 @@ function main() {
 
     echo -e "$CSTART>>restart_chrony$CEND"
     restart_chrony
-
-    #echo -e "$CSTART>>force_refresh_chrony$CEND"
-    #force_refresh_chrony
 }
 
 main
