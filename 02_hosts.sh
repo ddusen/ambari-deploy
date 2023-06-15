@@ -22,6 +22,9 @@ function config_hostname() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "hostname $name"
+        ssh -n $ipaddr "hostnamectl set-hostname $name"
+        ssh -n $ipaddr "echo '$name' > /etc/hostname"
         ssh -n $ipaddr "echo 'hostname=$name' > /etc/sysconfig/network"
     done
 }
