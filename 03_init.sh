@@ -13,13 +13,13 @@ function install_base() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
         echo -e "$CSTART>>>>$ipaddr$CEND"
-        scp rpms/epel-release-7-14.noarch.rpm $ipaddr:/tmp/
-        scp rpms/htop-2.2.0-3.el7.x86_64.rpm $ipaddr:/tmp/
-        scp rpms/iotop-0.6-4.el7.noarch.rpm $ipaddr:/tmp/
+        scp rpms/epel-release-8-19.el8.noarch.rpm $ipaddr:/tmp/
+        scp rpms/htop-3.2.1-1.el8.x86_64.rpm $ipaddr:/tmp/
+        scp rpms/iiotop-0.6-17.el8.noarch.rpm $ipaddr:/tmp/
 
-        ssh -n $ipaddr "rpm -Uvh /tmp/epel-release-7-14.noarch.rpm" || true
-        ssh -n $ipaddr "rpm -Uvh /tmp/htop-2.2.0-3.el7.x86_64.rpm" || true
-        ssh -n $ipaddr "rpm -Uvh /tmp/iotop-0.6-4.el7.noarch.rpm" || true
+        ssh -n $ipaddr "rpm -Uvh /tmp/epel-release-8-19.el8.noarch.rpm" || true
+        ssh -n $ipaddr "rpm -Uvh /tmp/htop-3.2.1-1.el8.x86_64.rpm" || true
+        ssh -n $ipaddr "rpm -Uvh /tmp/iiotop-0.6-17.el8.noarch.rpm" || true
         
         ssh -n $ipaddr "rm -rf /etc/yum.repos.d/epel*"
         ssh -n $ipaddr "yum install -y vim wget net-tools" || true
