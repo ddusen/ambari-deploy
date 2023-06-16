@@ -40,7 +40,7 @@ function config_mysql() {
     mysql_secure_installation
 
     # 手动执行，暂时未能实现自动执行
-    #  mysql_secure_installation <<EOF
+    # mysql_secure_installation <<EOF
     # y
     # 0
     # @GennLife2015
@@ -75,7 +75,7 @@ function main() {
     config_mysql
 
     echo -e "$CSTART>>update_database$CEND"
-    # update_database
+    update_database
 }
 
 main
