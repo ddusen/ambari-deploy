@@ -34,14 +34,24 @@ function start_mysql() {
 function config_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     mysql_secure_installation
+
+    # 手动执行，暂时未能实现自动执行
+#     mysql_secure_installation <<EOF
+# y
+# 0
+# @GennLife2015
+# @GennLife2015
+# y
+# y
+# y
+# y
+# y
+# EOF
 }
 
 # 更新数据库，在 mysql 中创建用户，添加新用户和数据库
 function update_database() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    default_passwd=$(cat /root/.mysql_secret |grep password|awk '{print $18}')
-    mysql -uroot -p"${default_passwd}" --connect-expired-password -e "SET PASSWORD = PASSWORD('$MYSQL_ROOT_PASSWD')"
-    sed -i "s/$default_passwd/$MYSQL_ROOT_PASSWD/" /root/.mysql_secret
     mysql -uroot -p"$MYSQL_ROOT_PASSWD" -e "SOURCE config/create_dbs.sql"
 }
 
