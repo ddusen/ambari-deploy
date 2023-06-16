@@ -59,7 +59,7 @@ function start_ambari() {
 }
 
 function main() {
-    echo -e "$CSTART>07_mysql.sh$CEND"
+    echo -e "$CSTART>08_ambari.sh$CEND"
 
     echo -e "$CSTART>>download_mysql$CEND"
     config_repos
