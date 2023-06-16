@@ -10,13 +10,13 @@ export CSTART='\033[36m'
 export CEND='\033[0m'
 
 ## 文件名称
-export FILENAME='hdp-parcels.3.3.1.0-004.20230618.tar.gz'
+export FILENAME='ambari-parcels.3.3.1.0-004.20230618.tar.gz'
 
 ## 中控机 IP：ambari、chrony 的服务端
 export LocalIp='10.0.5.224'
 
 ## httpd server address
-export HTTPD_SERVER='http://10.0.5.224/hdp-parcels/'
+export HTTPD_SERVER='http://10.0.5.224/ambari-parcels/'
 
 ## MySQL
 export MYSQL_HOST='10.0.5.224'

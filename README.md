@@ -12,17 +12,17 @@
 
 ## 前提
 
-1. 从公司云盘下载软件包 hdp-parcels.3.3.1.0-004.20230618.tar.gz 到脚本执行机器中。
+1. 从公司云盘下载软件包 ambari-parcels.3.3.1.0-004.20230618.tar.gz 到脚本执行机器中。
 - http://119.254.145.21:12225/owncloud/index.php/s/wR6tBJApQoCu8qH
-- 如果网盘链接失效，去网盘目录下找该包：03-大数据/05-HDP/hdp-parcels.3.3.1.0-004.20230618.tar.gz
+- 如果网盘链接失效，去网盘目录下找该包：03-大数据/05-HDP/ambari-parcels.3.3.1.0-004.20230618.tar.gz
 ```bash
-wget -O /opt/hdp-parcels.3.3.1.0-004.20230618.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/wR6tBJApQoCu8qH/download
+wget -O /opt/ambari-parcels.3.3.1.0-004.20230618.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/wR6tBJApQoCu8qH/download
 ```
 
 2. 把压缩包解压到 /var/www/html 目录下
 ```bash
 mkdir -p /var/www/html
-tar -zxvf /opt/hdp-parcels.3.3.1.0-004.20230618.tar.gz -C /var/www/html/
+tar -zxvf /opt/ambari-parcels.3.3.1.0-004.20230618.tar.gz -C /var/www/html/
 ```
 
 ## 一、Ambari 安装
