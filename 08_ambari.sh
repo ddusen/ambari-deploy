@@ -61,19 +61,19 @@ function start_ambari() {
 function main() {
     echo -e "$CSTART>08_ambari.sh$CEND"
 
-    echo -e "$CSTART>>download_mysql$CEND"
+    echo -e "$CSTART>>config_repos$CEND"
     config_repos
 
-    echo -e "$CSTART>>download_mysql$CEND"
+    echo -e "$CSTART>>install_ambari$CEND"
     install_ambari
 
-    echo -e "$CSTART>>download_mysql$CEND"
+    echo -e "$CSTART>>config_ambari$CEND"
     config_ambari
 
-    echo -e "$CSTART>>download_mysql$CEND"
+    echo -e "$CSTART>>update_database$CEND"
     update_database
 
-    echo -e "$CSTART>>download_mysql$CEND"
+    echo -e "$CSTART>>start_ambari$CEND"
     start_ambari
 
 }
