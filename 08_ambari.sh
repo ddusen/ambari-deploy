@@ -22,7 +22,7 @@ function install_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     yum install -y ambari-server
 }
-
+ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-j-8.0.33.jar
 # 启动 ambari
 function start_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
