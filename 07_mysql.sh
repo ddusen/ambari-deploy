@@ -11,6 +11,7 @@ source 00_env
 # 从httpd私有软件库，下载 mysql8.0
 function download_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    wget -O /tmp/mysql-8.0.30-require-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0.30-require-rpms.tar.gz
     wget -O /tmp/mysql-8.0.30-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0.30-bundle-rpms.tar.gz
 }
 
@@ -18,6 +19,9 @@ function download_mysql() {
 function install_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     yum remove -y mariadb*
+
+    tar -zxvf mysql-8.0.30-require-rpms.tar.gz -C /tmp/
+    rpm -ivh /tmp/mysql-8.0.30-require-rpms/*.rpm || true # 忽略报错
 
     tar -zxvf mysql-8.0.30-bundle-rpms.tar.gz -C /tmp/
     rpm -ivh /tmp/mysql-8.0.30-bundle-rpms/*.rpm || true # 忽略报错
@@ -36,17 +40,17 @@ function config_mysql() {
     mysql_secure_installation
 
     # 手动执行，暂时未能实现自动执行
-#     mysql_secure_installation <<EOF
-# y
-# 0
-# @GennLife2015
-# @GennLife2015
-# y
-# y
-# y
-# y
-# y
-# EOF
+    #  mysql_secure_installation <<EOF
+    # y
+    # 0
+    # @GennLife2015
+    # @GennLife2015
+    # y
+    # y
+    # y
+    # y
+    # y
+    # EOF
 }
 
 # 更新数据库，在 mysql 中创建用户，添加新用户和数据库
