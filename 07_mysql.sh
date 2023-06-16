@@ -20,10 +20,10 @@ function install_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     yum remove -y mariadb*
 
-    tar -zxvf mysql-8.0.30-require-rpms.tar.gz -C /tmp/
+    tar -zxvf /tmp/mysql-8.0.30-require-rpms.tar.gz -C /tmp/
     rpm -ivh /tmp/mysql-8.0.30-require-rpms/*.rpm || true # 忽略报错
 
-    tar -zxvf mysql-8.0.30-bundle-rpms.tar.gz -C /tmp/
+    tar -zxvf /tmp/mysql-8.0.30-bundle-rpms.tar.gz -C /tmp/
     rpm -ivh /tmp/mysql-8.0.30-bundle-rpms/*.rpm || true # 忽略报错
 }
 
