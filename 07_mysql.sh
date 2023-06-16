@@ -56,7 +56,7 @@ function config_mysql() {
 # 更新数据库，在 mysql 中创建用户，添加新用户和数据库
 function update_database() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    mysql -uroot -p"$MYSQL_ROOT_PASSWD" -e "SOURCE config/create_dbs.sql"
+    mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -e "SOURCE config/create_dbs.sql"
 }
 
 function main() {
