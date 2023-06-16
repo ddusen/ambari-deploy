@@ -20,7 +20,7 @@ export FILENAME='ambari-parcels.20230618.tar.gz'
 export LocalIp='10.0.5.224'
 
 ## httpd server address
-export HTTPD_SERVER='http://10.0.5.224/ambari-parcels/'
+export HTTPD_SERVER='http://10.0.5.224/ambari-parcels'
 
 ## MySQL
 export MYSQL_HOST='10.0.5.224'
@@ -29,6 +29,3 @@ export MYSQL_AMBARI_PASSWD='ambaripasswd'
 
 ## DataNode默认数据根目录
 export DATA_ROOT='/data'
-
-
-update user set password=password("bigdata") where user="ambari"
