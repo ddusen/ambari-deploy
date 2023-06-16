@@ -21,10 +21,10 @@ function install_mysql() {
     yum remove -y mariadb*
 
     tar -zxvf /tmp/mysql-8.0.30-require-rpms.tar.gz -C /tmp/
-    rpm -ivh /tmp/mysql-8.0.30-require-rpms/*.rpm || true # 忽略报错
+    yum localinstall -y /tmp/mysql-8.0.30-require-rpms/*.rpm || true # 忽略报错
 
     tar -zxvf /tmp/mysql-8.0.30-bundle-rpms.tar.gz -C /tmp/
-    rpm -ivh /tmp/mysql-8.0.30-bundle-rpms/*.rpm || true # 忽略报错
+    yum localinstall -y /tmp/mysql-8.0.30-bundle-rpms/*.rpm || true # 忽略报错
 }
 
 # 启动mysql
