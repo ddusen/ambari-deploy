@@ -22,56 +22,57 @@ function install_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     yum install -y ambari-server
 }
-ambari-server setup --jdbc-db=mysql --jdbc-driver=/usr/share/java/mysql-connector-j-8.0.33.jar
+
+# 配置 ambari
+function config_ambari() {
+    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    ambari-server stop
+    
+    cp config/ambari.properties /etc/ambari-server/conf/ambari.properties
+    sed -i "s/TODO_MYSQL_HOST/$MYSQL_HOST/g" /etc/ambari-server/conf/ambari.properties
+    echo "$MYSQL_AMBARI_PASSWD" > /etc/ambari-server/conf/password.dat
+    
+    # ambari-server setup 
+    # --database=mysql 
+    # --databasehost=localhost 
+    # --databaseport=3306 
+    # --databasename=ambari 
+    # --databaseusername=ambari 
+    # --databasepassword=am@Am123jq 
+    # --jdbc-db=mysql 
+    # --jdbc-driver=/usr/share/java/mysql-connector-java.jar 
+}
+
+# 更新数据库
+function update_database() {
+    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -Dambari -e "SOURCE /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql"
+}
+
 # 启动 ambari
 function start_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    systemctl start ambari-server
-    systemctl enable ambari-server
-}
-
-# 配置 mysql8.0
-function config_mysql() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    mysql_secure_installation
-
-    # 手动执行，暂时未能实现自动执行
-    # mysql_secure_installation <<EOF
-    # y
-    # 0
-    # @GennLife2015
-    # @GennLife2015
-    # y
-    # y
-    # y
-    # y
-    # y
-    # EOF
-}
-
-# 更新数据库，在 mysql 中创建用户，添加新用户和数据库
-function update_database() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -e "SOURCE config/create_dbs.sql"
+    ambari-server start
 }
 
 function main() {
     echo -e "$CSTART>07_mysql.sh$CEND"
 
     echo -e "$CSTART>>download_mysql$CEND"
-    download_mysql
+    config_repos
 
-    echo -e "$CSTART>>install_mysql$CEND"
-    install_mysql
+    echo -e "$CSTART>>download_mysql$CEND"
+    install_ambari
 
-    echo -e "$CSTART>>start_mysql$CEND"
-    start_mysql
+    echo -e "$CSTART>>download_mysql$CEND"
+    config_ambari
 
-    echo -e "$CSTART>>config_mysql$CEND"
-    config_mysql
-
-    echo -e "$CSTART>>update_database$CEND"
+    echo -e "$CSTART>>download_mysql$CEND"
     update_database
+
+    echo -e "$CSTART>>download_mysql$CEND"
+    start_ambari
+
 }
 
 main

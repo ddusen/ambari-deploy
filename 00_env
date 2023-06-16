@@ -25,6 +25,10 @@ export HTTPD_SERVER='http://10.0.5.224/ambari-parcels/'
 ## MySQL
 export MYSQL_HOST='10.0.5.224'
 export MYSQL_ROOT_PASSWD='@GennLife2015'
+export MYSQL_AMBARI_PASSWD='ambaripasswd'
 
 ## DataNode默认数据根目录
 export DATA_ROOT='/data'
+
+
+update user set password=password("bigdata") where user="ambari"
