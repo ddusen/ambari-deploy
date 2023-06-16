@@ -13,7 +13,7 @@ function config_repos() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     cp config/ambari.repo /etc/yum.repos.d/
     baseurl="$HTTPD_SERVER/ambari/$AMBARI_VERSION"
-    sed -i "s/TO_AMBARI_REPO_URL/$baseurl/g" /etc/yum.repos.d/ambari.repo
+    sed -i "s#TO_AMBARI_REPO_URL#$baseurl#g" /etc/yum.repos.d/ambari.repo
     yum clean all
     yum makecache
     yum repolist
@@ -32,7 +32,7 @@ function config_ambari() {
     
     mkdir -p /etc/ambari-server/conf/
     cp config/ambari.properties /etc/ambari-server/conf/ambari.properties
-    sed -i "s/TODO_MYSQL_HOST/$MYSQL_HOST/g" /etc/ambari-server/conf/ambari.properties
+    sed -i "s#TODO_MYSQL_HOST#$MYSQL_HOST#g" /etc/ambari-server/conf/ambari.properties
     echo "$MYSQL_AMBARI_PASSWD" > /etc/ambari-server/conf/password.dat
     
     # ambari-server setup 
