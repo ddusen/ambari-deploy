@@ -1,0 +1,4 @@
+[ambari]
+name=ambari
+baseurl=TO_AMBARI_REPO_URL
+gpgcheck=0

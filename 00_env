@@ -9,8 +9,12 @@
 export CSTART='\033[36m'
 export CEND='\033[0m'
 
+## 版本
+AMBARI_VERSION='2.7.6.0-4'
+HDP_VERSION='3.3.1.0-004'
+
 ## 文件名称
-export FILENAME='ambari-parcels.3.3.1.0-004.20230618.tar.gz'
+export FILENAME='ambari-parcels.20230618.tar.gz'
 
 ## 中控机 IP：ambari、chrony 的服务端
 export LocalIp='10.0.5.224'
