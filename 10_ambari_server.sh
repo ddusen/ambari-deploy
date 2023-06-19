@@ -48,7 +48,7 @@ function start_ambari() {
 }
 
 function main() {
-    echo -e "$CSTART>09_ambari_server.sh$CEND"
+    echo -e "$CSTART>10_ambari_server.sh$CEND"
     
     echo -e "$CSTART>>install_ambari$CEND"
     install_ambari

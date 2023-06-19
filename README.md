@@ -54,11 +54,14 @@ tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
 ### 7. 安装 mysql
 - [./07_mysql.sh](./07_mysql.sh)
 
-### 8. 安装 ambari agent
-- [./08_ambari_agent.sh](./08_ambari_agent.sh)
+### 8. 安装 ambari repos
+- [./08_ambari_repos.sh](./08_ambari_repos.sh)
 
-### 9. 安装 ambari server
-- [./09_ambari_server.sh](./09_ambari_server.sh)
+### 9. 安装 ambari agent
+- [./09_ambari_agent.sh](./09_ambari_agent.sh)
+
+### 10. 安装 ambari server
+- [./10_ambari_server.sh](./10_ambari_server.sh)
 
 
 *****
