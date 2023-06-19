@@ -8,6 +8,20 @@
 set -e 
 source 00_env
 
+# 配置 ambari repos
+function config_repos() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+        scp config/ambari.repo /etc/yum.repos.d/ambari.repo
+
+        baseurl="$HTTPD_SERVER/ambari/$AMBARI_VERSION"
+        ssh -n $ipaddr "sed -i 's#TO_AMBARI_REPO_URL#$baseurl#g' /etc/yum.repos.d/ambari.repo"
+        ssh -n $ipaddr "yum clean all"
+        ssh -n $ipaddr "yum makecache"
+        ssh -n $ipaddr "yum repolist"
+    done
+}
 
 # 安装 agent
 function install_agent() {
@@ -40,6 +54,9 @@ function start_agent() {
 function main() {
     echo -e "$CSTART>08_ambari_agent.sh$CEND"
     
+    echo -e "$CSTART>>config_repos$CEND"
+    config_repos
+
     echo -e "$CSTART>>install_agent$CEND"
     install_agent
 

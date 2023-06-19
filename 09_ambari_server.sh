@@ -8,17 +8,6 @@
 set -e 
 source 00_env
 
-# 配置 ambari repos
-function config_repos() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    cp config/ambari.repo /etc/yum.repos.d/
-    baseurl="$HTTPD_SERVER/ambari/$AMBARI_VERSION"
-    sed -i "s#TO_AMBARI_REPO_URL#$baseurl#g" /etc/yum.repos.d/ambari.repo
-    yum clean all
-    yum makecache
-    yum repolist
-}
-
 # 安装 ambari
 function install_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
@@ -60,10 +49,7 @@ function start_ambari() {
 
 function main() {
     echo -e "$CSTART>09_ambari_server.sh$CEND"
-
-    echo -e "$CSTART>>config_repos$CEND"
-    config_repos
-
+    
     echo -e "$CSTART>>install_ambari$CEND"
     install_ambari
 
