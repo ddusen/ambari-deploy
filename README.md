@@ -75,6 +75,8 @@ tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
 - ![hdp-06](./images/hdp-06.png)
 - ![hdp-07](./images/hdp-07.png)
 - ![hdp-08](./images/hdp-08.png)
+- ![hdp-09](./images/hdp-09.png)
+- ![hdp-10](./images/hdp-10.png)
 
 ## 三、其它
 1. hue 缺少 MySQL-python
