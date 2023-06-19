@@ -13,7 +13,7 @@ function config_repos() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
-        scp config/ambari.repo /etc/yum.repos.d/ambari.repo
+        scp config/ambari.repo $ipaddr:/etc/yum.repos.d/ambari.repo
 
         baseurl="$HTTPD_SERVER/ambari/$AMBARI_VERSION"
         ssh -n $ipaddr "sed -i 's#TO_AMBARI_REPO_URL#$baseurl#g' /etc/yum.repos.d/ambari.repo"
