@@ -64,14 +64,14 @@ tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
 *****
 
 ## 二、HDP 安装
-- ![hdp-01](hdp-01.png)
-- ![hdp-02](hdp-02.png)
-- ![hdp-03](hdp-03.png)
-- ![hdp-04](hdp-04.png)
-- ![hdp-05](hdp-05.png)
-- ![hdp-06](hdp-06.png)
-- ![hdp-07](hdp-07.png)
-- ![hdp-08](hdp-08.png)
+- ![hdp-01](./images/hdp-01.png)
+- ![hdp-02](./images/hdp-02.png)
+- ![hdp-03](./images/hdp-03.png)
+- ![hdp-04](./images/hdp-04.png)
+- ![hdp-05](./images/hdp-05.png)
+- ![hdp-06](./images/hdp-06.png)
+- ![hdp-07](./images/hdp-07.png)
+- ![hdp-08](./images/hdp-08.png)
 
 ## 三、其它
 - ambari-parcels.6.3.1466458.tar.gz
