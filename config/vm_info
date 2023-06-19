@@ -1,9 +1,9 @@
 #IPAddr Hostname Passwd
-10.0.5.225 hdp02 @Dev1111
-10.0.5.228 hdp03 @Dev1111
-10.0.5.229 hdp04 @Dev1111
-10.0.5.232 hdp05 @Dev1111
-10.0.5.233 hdp06 @Dev1111
-10.0.5.237 hdp07 @Dev1111
-10.0.5.238 hdp08 @Dev1111
-10.0.5.224 hdp01 @Dev1111
+10.0.5.225 hdp-master-01 @Dev1111
+10.0.5.228 hdp-master-02 @Dev1111
+10.0.5.229 hdp-master-03 @Dev1111
+10.0.5.232 hdp-data-01 @Dev1111
+10.0.5.233 hdp-data-02 @Dev1111
+10.0.5.237 hdp-data-03 @Dev1111
+10.0.5.238 hdp-data-04 @Dev1111
+10.0.5.224 ambari @Dev1111

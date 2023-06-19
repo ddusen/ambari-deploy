@@ -44,17 +44,17 @@ function clean_mysql() {
     rm -rf /root/.mysql_history
 }
 
-# 清理所有服务器上的 cloudera 服务
-function clean_cloudera() {
+# 清理所有服务器上的 ambari 服务
+function clean_ambari() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND";
-        ssh -n $ipaddr "systemctl stop cloudera*"
-        ssh -n $ipaddr "yum remove -y cloudera*"
-        ssh -n $ipaddr "rm -rf /opt/cloudera*"
-        ssh -n $ipaddr "rm -rf /etc/cloudera*"
-        ssh -n $ipaddr "rm -rf /var/lib/cloudera*"
-        ssh -n $ipaddr "rm -rf /var/log/cloudera*"
+        ssh -n $ipaddr "systemctl stop ambari*"
+        ssh -n $ipaddr "yum remove -y ambari*"
+        ssh -n $ipaddr "rm -rf /opt/ambari*"
+        ssh -n $ipaddr "rm -rf /etc/ambari*"
+        ssh -n $ipaddr "rm -rf /var/lib/ambari*"
+        ssh -n $ipaddr "rm -rf /var/log/ambari*"
         ssh -n $ipaddr "rm -rf $DATA_ROOT"
         ssh -n $ipaddr "systemctl daemon-reload"
     done
@@ -82,8 +82,8 @@ function main() {
     echo -e "$CSTART>>clean_mysql$CEND"
     clean_mysql || true
 
-    echo -e "$CSTART>>clean_cloudera$CEND"
-    clean_cloudera || true
+    echo -e "$CSTART>>clean_ambari$CEND"
+    clean_ambari || true
 
     echo -e "$CSTART>>clean_data$CEND"
     clean_data || true

@@ -1,11 +1,11 @@
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-10.0.5.224 hdp01
-10.0.5.225 hdp02
-10.0.5.228 hdp03
-10.0.5.229 hdp04
-10.0.5.232 hdp05
-10.0.5.233 hdp06
-10.0.5.237 hdp07
-10.0.5.238 hdp08
+10.0.5.224 ambari
+10.0.5.225 hdp-master-01
+10.0.5.228 hdp-master-02
+10.0.5.229 hdp-master-03
+10.0.5.232 hdp-data-01
+10.0.5.233 hdp-data-02
+10.0.5.237 hdp-data-03
+10.0.5.238 hdp-data-04
