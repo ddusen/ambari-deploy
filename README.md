@@ -54,11 +54,24 @@ tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
 ### 7. 安装 mysql
 - [./07_mysql.sh](./07_mysql.sh)
 
+### 8. 安装 ambari agent
+- [./08_ambari_agent.sh](./08_ambari_agent.sh)
+
+### 9. 安装 ambari server
+- [./09_ambari_server.sh](./09_ambari_server.sh)
+
 
 *****
 
 ## 二、HDP 安装
-
+- ![hdp-01](hdp-01.png)
+- ![hdp-02](hdp-02.png)
+- ![hdp-03](hdp-03.png)
+- ![hdp-04](hdp-04.png)
+- ![hdp-05](hdp-05.png)
+- ![hdp-06](hdp-06.png)
+- ![hdp-07](hdp-07.png)
+- ![hdp-08](hdp-08.png)
 
 ## 三、其它
 - ambari-parcels.6.3.1466458.tar.gz

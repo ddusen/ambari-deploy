@@ -18,4 +18,9 @@ CREATE DATABASE IF NOT EXISTS sentry DEFAULT CHARACTER SET utf8 DEFAULT COLLATE 
 CREATE USER IF NOT EXISTS 'sentry'@'%' IDENTIFIED BY 'h@senIe3t2qj';
 GRANT ALL ON sentry.* TO 'sentry'@'%';
 
+#Ranger Server	ranger	rangeradmin
+CREATE DATABASE IF NOT EXISTS ranger DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE USER IF NOT EXISTS 'rangeradmin'@'%' IDENTIFIED BY 'h@range3t2qj';
+GRANT ALL ON ranger.* TO 'rangeradmin'@'%';
+
 FLUSH PRIVILEGES;
