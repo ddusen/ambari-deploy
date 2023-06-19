@@ -10,8 +10,8 @@ export CSTART='\033[36m'
 export CEND='\033[0m'
 
 ## 版本
-AMBARI_VERSION='2.7.6.0-4'
-HDP_VERSION='3.3.1.0-004'
+export AMBARI_VERSION='2.7.6.0-4'
+export HDP_VERSION='3.3.1.0-004'
 
 ## 文件名称
 export FILENAME='ambari-parcels.20230618.tar.gz'

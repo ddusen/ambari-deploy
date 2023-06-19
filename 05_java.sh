@@ -34,6 +34,10 @@ function config_jars() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "mkdir -p /usr/hdp/$HDP_VERSION/dolphinscheduler/tools/libs"
+        ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler /usr/hdp/$HDP_VERSION/dolphinscheduler"
+        scp -r libs/mysql-connector-java.jar  $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/tools/libs
+
         ssh -n $ipaddr "mkdir -p /usr/share/java"
         scp -r libs/mysql-connector-java.jar  $ipaddr:/usr/share/java/
         

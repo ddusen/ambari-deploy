@@ -1,3 +1,6 @@
+#更改密码等级
+SET GLOBAL validate_password_policy=LOW;
+
 #Ambari
 CREATE DATABASE IF NOT EXISTS ambari DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'ambari'@'%' IDENTIFIED BY 'ambaripasswd';
@@ -22,5 +25,10 @@ GRANT ALL ON sentry.* TO 'sentry'@'%';
 CREATE DATABASE IF NOT EXISTS ranger DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'rangeradmin'@'%' IDENTIFIED BY 'h@range3t2qj';
 GRANT ALL ON ranger.* TO 'rangeradmin'@'%';
+
+#dolphinscheduler
+CREATE DATABASE IF NOT EXISTS dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE USER IF NOT EXISTS 'dolphinscheduler'@'%' IDENTIFIED BY 'h@rosc3t2qj';
+GRANT ALL ON dolphinscheduler.* TO 'dolphinscheduler'@'%';
 
 FLUSH PRIVILEGES;
