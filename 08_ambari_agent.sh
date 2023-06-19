@@ -38,7 +38,7 @@ function start_agent() {
 }
 
 function main() {
-    echo -e "$CSTART>06_agent.sh$CEND"
+    echo -e "$CSTART>08_ambari_agent.sh$CEND"
     
     echo -e "$CSTART>>install_agent$CEND"
     install_agent

@@ -59,7 +59,7 @@ function start_ambari() {
 }
 
 function main() {
-    echo -e "$CSTART>08_ambari.sh$CEND"
+    echo -e "$CSTART>09_ambari_server.sh$CEND"
 
     echo -e "$CSTART>>config_repos$CEND"
     config_repos
