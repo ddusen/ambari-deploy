@@ -17,10 +17,8 @@ function config_repos() {
         ssh -n $ipaddr "rm -rf /etc/yum.repos.d/*"
         scp config/default.repo $ipaddr:/etc/yum.repos.d/default.repo
         scp config/ambari.repo $ipaddr:/etc/yum.repos.d/ambari.repo
-        scp config/hdp.repo $ipaddr:/etc/yum.repos.d/hdp.repo
 
         ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LocalIp/g' /etc/yum.repos.d/ambari.repo"
-        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LocalIp/g' /etc/yum.repos.d/hdp.repo"
         
         ssh -n $ipaddr "yum clean all"
         ssh -n $ipaddr "yum makecache"
