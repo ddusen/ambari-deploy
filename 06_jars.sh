@@ -28,15 +28,20 @@ function dolphin_jars() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
+        dolphin_home="/usr/hdp/$HDP_VERSION/dolphinscheduler"
+        # dolphin 不存在则跳过
+        if ssh $ipaddr "test -e $dolphin_home"; then
+            continue
+        fi
 
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/alert-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/api-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/master-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/standalone-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/tools/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/worker-server/libs
+        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/alert-server/libs
+        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/api-server/libs
+        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/master-server/libs
+        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/standalone-server/libs
+        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/tools/libs
+        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/worker-server/libs
 
-        ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler /usr/hdp/$HDP_VERSION/dolphinscheduler"
+        ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler $dolphin_home"
     done
 }
 
