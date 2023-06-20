@@ -9,7 +9,22 @@ set -e
 source 00_env
 
 # 配置一些插件 jars
-function config_jars() {
+function base_jars() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+
+        ssh -n $ipaddr "mkdir -p /usr/share/java"
+        scp -r libs/mysql-connector-java.jar  $ipaddr:/usr/share/java/
+        
+        ssh -n $ipaddr "mkdir -p /usr/share/hive"
+        scp -r libs/commons-httpclient-3.1.jar  $ipaddr:/usr/share/hive/
+        scp -r libs/elasticsearch-hadoop-6.3.0.jar  $ipaddr:/usr/share/hive/
+        scp -r libs/jaxen-1.2.0.jar  $ipaddr:/usr/share/hive/
+    done
+}
+
+function dolphin_jars() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
@@ -22,22 +37,31 @@ function config_jars() {
         scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/worker-server/libs
 
         ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler /usr/hdp/$HDP_VERSION/dolphinscheduler"
+    done
+}
 
-        ssh -n $ipaddr "mkdir -p /usr/share/java"
-        scp -r libs/mysql-connector-java.jar  $ipaddr:/usr/share/java/
-        
-        ssh -n $ipaddr "mkdir -p /usr/share/hive"
-        scp -r libs/commons-httpclient-3.1.jar  $ipaddr:/usr/share/hive/
-        scp -r libs/elasticsearch-hadoop-6.3.0.jar  $ipaddr:/usr/share/hive/
-        scp -r libs/jaxen-1.2.0.jar  $ipaddr:/usr/share/hive/
+function iceberg_jars() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+
+        ssh -n $ipaddr "mkdir -p /usr/share/hive/auxlib"
+        ssh -n $ipaddr "wget -O /usr/share/hive/auxlib/iceberg-hive-runtime-1.3.0.jar $HTTPD_SERVER/others/iceberg-hive-runtime-1.3.0.jar"
+        ssh -n $ipaddr "wget -O /usr/share/hive/auxlib/libfb303-0.9.3.jar $HTTPD_SERVER/others/libfb303-0.9.3.jar"
     done
 }
 
 function main() {
     echo -e "$CSTART>06_jars.sh$CEND"
 
-    echo -e "$CSTART>>config_jars$CEND"
-    config_jars
+    echo -e "$CSTART>>base_jars$CEND"
+    base_jars
+
+    echo -e "$CSTART>>dolphin_jars$CEND"
+    dolphin_jars
+
+    echo -e "$CSTART>>iceberg_jars$CEND"
+    iceberg_jars
 }
 
 main

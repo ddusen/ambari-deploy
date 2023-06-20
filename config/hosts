@@ -1,7 +1,7 @@
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-10.0.5.224 ambari
+10.0.5.224 ambari-master
 10.0.5.225 hdp-master-01
 10.0.5.228 hdp-master-02
 10.0.5.229 hdp-master-03

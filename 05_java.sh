@@ -29,31 +29,6 @@ function install_jdk() {
     done
 }
 
-# 配置一些插件 jars
-function config_jars() {
-    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
-    do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
-
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/alert-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/api-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/master-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/standalone-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/tools/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:/usr/hdp/$HDP_VERSION/dolphinscheduler/worker-server/libs
-
-        ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler /usr/hdp/$HDP_VERSION/dolphinscheduler"
-
-        ssh -n $ipaddr "mkdir -p /usr/share/java"
-        scp -r libs/mysql-connector-java.jar  $ipaddr:/usr/share/java/
-        
-        ssh -n $ipaddr "mkdir -p /usr/share/hive"
-        scp -r libs/commons-httpclient-3.1.jar  $ipaddr:/usr/share/hive/
-        scp -r libs/elasticsearch-hadoop-6.3.0.jar  $ipaddr:/usr/share/hive/
-        scp -r libs/jaxen-1.2.0.jar  $ipaddr:/usr/share/hive/
-    done
-}
-
 function main() {
     echo -e "$CSTART>05_java.sh$CEND"
 
@@ -62,9 +37,6 @@ function main() {
 
     echo -e "$CSTART>>install_jdk$CEND"
     install_jdk
-    
-    echo -e "$CSTART>>config_jars$CEND"
-    config_jars
 }
 
 main
