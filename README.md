@@ -48,14 +48,14 @@ tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
 ### 5. 安装 java
 - [./05_java.sh](./05_java.sh)
 
-### 6. 安装 chrony
-- [./06_chrony.sh](./06_chrony.sh)
+### 6. 配置 jars
+- [./06_jars.sh](./06_jars.sh)
 
-### 7. 安装 mysql
-- [./07_mysql.sh](./07_mysql.sh)
+### 7. 安装 chrony
+- [./07_chrony.sh](./07_chrony.sh)
 
-### 8. 安装 ambari repos
-- [./08_ambari_repos.sh](./08_ambari_repos.sh)
+### 8. 安装 mysql
+- [./08_mysql.sh](./08_mysql.sh)
 
 ### 9. 安装 ambari agent
 - [./09_ambari_agent.sh](./09_ambari_agent.sh)
