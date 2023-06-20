@@ -50,9 +50,9 @@ function iceberg_jars() {
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
 
-        ssh -n $ipaddr "mkdir -p /usr/share/hive/auxlib"
-        ssh -n $ipaddr "wget -O /usr/share/hive/auxlib/iceberg-hive-runtime-1.3.0.jar $HTTPD_SERVER/others/iceberg-hive-runtime-1.3.0.jar"
-        ssh -n $ipaddr "wget -O /usr/share/hive/auxlib/libfb303-0.9.3.jar $HTTPD_SERVER/others/libfb303-0.9.3.jar"
+        ssh -n $ipaddr "mkdir -p /usr/share/hive"
+        ssh -n $ipaddr "wget -O /usr/share/hive/iceberg-hive-runtime-1.3.0.jar $HTTPD_SERVER/others/iceberg-hive-runtime-1.3.0.jar"
+        ssh -n $ipaddr "wget -O /usr/share/hive/libfb303-0.9.3.jar $HTTPD_SERVER/others/libfb303-0.9.3.jar"
     done
 }
 

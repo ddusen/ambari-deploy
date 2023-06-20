@@ -26,6 +26,11 @@ CREATE DATABASE IF NOT EXISTS ranger DEFAULT CHARACTER SET utf8 DEFAULT COLLATE 
 CREATE USER IF NOT EXISTS 'rangeradmin'@'%' IDENTIFIED BY 'h@range3t2qj';
 GRANT ALL ON ranger.* TO 'rangeradmin'@'%';
 
+#Ranger Server	rangerkms	rangerkms
+CREATE DATABASE IF NOT EXISTS rangerkms DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+CREATE USER IF NOT EXISTS 'rangerkms'@'%' IDENTIFIED BY 'h@range3t2qj';
+GRANT ALL ON rangerkms.* TO 'rangerkms'@'%';
+
 #dolphinscheduler
 CREATE DATABASE IF NOT EXISTS dolphinscheduler DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'dolphinscheduler'@'%' IDENTIFIED BY 'h@rosc3t2qj';
