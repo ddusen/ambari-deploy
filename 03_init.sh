@@ -29,9 +29,9 @@ function install_base() {
             ssh -n $ipaddr "rm -rf /etc/yum.repos.d/epel*"
             ssh -n $ipaddr "yum install -y vim wget net-tools" || true
         elif [[ "$system_version" == CentOSLinuxrelease7* ]]; then
-            scp rpms/epel-release-7-14.noarch.rpm $ipaddr:/tmp/
-            scp rpms/htop-2.2.0-3.el7.x86_64.rpm $ipaddr:/tmp/
-            scp rpms/iotop-0.6-4.el7.noarch.rpm $ipaddr:/tmp/
+            scp rpms/centos7/epel-release-7-14.noarch.rpm $ipaddr:/tmp/
+            scp rpms/centos7/htop-2.2.0-3.el7.x86_64.rpm $ipaddr:/tmp/
+            scp rpms/centos7/iotop-0.6-4.el7.noarch.rpm $ipaddr:/tmp/
 
             ssh -n $ipaddr "rpm -Uvh /tmp/epel-release-7-14.noarch.rpm" || true
             ssh -n $ipaddr "rpm -Uvh /tmp/htop-2.2.0-3.el7.x86_64.rpm" || true
