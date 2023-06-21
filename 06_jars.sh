@@ -29,19 +29,18 @@ function dolphin_jars() {
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
         dolphin_home="/usr/hdp/$HDP_VERSION/dolphinscheduler"
-        # dolphin 不存在则跳过
+        # dolphin 目录存在
         if ssh $ipaddr "test -e $dolphin_home"; then
-            continue
+            scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/alert-server/libs
+            scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/api-server/libs
+            scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/master-server/libs
+            scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/standalone-server/libs
+            scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/tools/libs
+            scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/worker-server/libs
+
+            ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler $dolphin_home"
         fi
 
-        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/alert-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/api-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/master-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/standalone-server/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/tools/libs
-        scp -r libs/mysql-connector-java.jar $ipaddr:$dolphin_home/worker-server/libs
-
-        ssh -n $ipaddr "chown -R dolphinscheduler:dolphinscheduler $dolphin_home"
     done
 }
 
