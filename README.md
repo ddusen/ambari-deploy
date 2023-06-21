@@ -92,7 +92,8 @@ pip install mysql-python
 
 2. ambari-parcels.6.3.1466458.tar.gz
 ```bash
-[root@ambari ambari]# tree /var/www/html/ambari-parcels
+[root@ambari html]# tree /var/www/html/ambari-parcels
+
 /var/www/html/ambari-parcels
 |-- ambari
 |   `-- 2.7.6.0-4
@@ -286,11 +287,15 @@ pip install mysql-python
 |           |-- snappy-devel-1.1.0-3.el7.i686.rpm
 |           `-- snappy-devel-1.1.0-3.el7.x86_64.rpm
 `-- others
+    |-- iceberg-flink-runtime-1.15-1.3.0.jar
+    |-- iceberg-hive-runtime-1.3.0.jar
+    |-- iceberg-spark-runtime-3.3_2.12-1.3.0.jar
     |-- jdk-8u202-linux-x64.tar.gz
+    |-- libfb303-0.9.3.jar
     |-- mysql-8.0.30-bundle-rpms.tar.gz
     `-- mysql-8.0.30-require-rpms.tar.gz
 
-42 directories, 153 files
+42 directories, 157 files
 ```
 
 ## 四、Refs
