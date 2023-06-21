@@ -47,6 +47,9 @@ function start_mysql() {
 # 配置 mysql8.0
 function config_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    #默认初始化密码
+    grep 'temporary password' /var/log/mysqld.log
+    #更新密码
     mysql_secure_installation
 
     # 手动执行，暂时未能实现自动执行
@@ -66,6 +69,9 @@ function config_mysql() {
 # 更新数据库，在 mysql 中创建用户，添加新用户和数据库
 function update_database() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    #降低密码难度
+    mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -e "SET GLOBAL validate_password.policy=LOW"
+    #导入常规用户
     mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -e "SOURCE config/create_dbs.sql"
 }
 

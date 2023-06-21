@@ -1,6 +1,3 @@
-#更改密码等级
-SET GLOBAL validate_password_policy=LOW;
-
 #Ambari
 CREATE DATABASE IF NOT EXISTS ambari DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
 CREATE USER IF NOT EXISTS 'ambari'@'%' IDENTIFIED BY 'ambaripasswd';
