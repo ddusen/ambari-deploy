@@ -32,10 +32,12 @@ function install_base() {
             scp rpms/centos7/epel-release-7-14.noarch.rpm $ipaddr:/tmp/
             scp rpms/centos7/htop-2.2.0-3.el7.x86_64.rpm $ipaddr:/tmp/
             scp rpms/centos7/iotop-0.6-4.el7.noarch.rpm $ipaddr:/tmp/
+            scp rpms/centos7/libtirpc-devel-0.2.4-0.16.el7.x86_64.rpm $ipaddr:/tmp/
 
             ssh -n $ipaddr "rpm -Uvh /tmp/epel-release-7-14.noarch.rpm" || true
             ssh -n $ipaddr "rpm -Uvh /tmp/htop-2.2.0-3.el7.x86_64.rpm" || true
             ssh -n $ipaddr "rpm -Uvh /tmp/iotop-0.6-4.el7.noarch.rpm" || true
+            ssh -n $ipaddr "rpm -Uvh /tmp/libtirpc-devel-0.2.4-0.16.el7.x86_64.rpm" || true
             
             ssh -n $ipaddr "rm -rf /etc/yum.repos.d/epel*"
             ssh -n $ipaddr "yum install -y vim wget net-tools" || true
