@@ -8,6 +8,15 @@
 set -e 
 source 00_env
 
+# 移除 ntp，使用 chrony，避免版本冲突
+function remove_ntp() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "yum remove -y ntp" || true
+    done
+}
+
 # 备份 chrony config
 function backup_chrony_config() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
@@ -57,6 +66,9 @@ function restart_chrony() {
 
 function main() {
     echo -e "$CSTART>07_chrony.sh$CEND"
+
+    echo -e "$CSTART>>remove_ntp$CEND"
+    remove_ntp
 
     echo -e "$CSTART>>backup_chrony_config$CEND"
     backup_chrony_config
