@@ -8,6 +8,12 @@
 set -e 
 source 00_env
 
+# ambari server 依赖 postgres，需要移除旧版本，避免冲突
+function remove_postgres() {
+    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    yum remove -y postgres*
+}
+
 # 安装 ambari
 function install_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
@@ -50,6 +56,9 @@ function start_ambari() {
 function main() {
     echo -e "$CSTART>10_ambari_server.sh$CEND"
     
+    echo -e "$CSTART>>remove_postgres$CEND"
+    remove_postgres
+
     echo -e "$CSTART>>install_ambari$CEND"
     install_ambari
 
