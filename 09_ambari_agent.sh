@@ -15,9 +15,7 @@ function config_repos() {
         echo -e "$CSTART>>>>$ipaddr$CEND"
         scp config/ambari.repo $ipaddr:/etc/yum.repos.d/ambari.repo
         ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LocalIp/g' /etc/yum.repos.d/ambari.repo"
-        ssh -n $ipaddr "yum clean all"
-        ssh -n $ipaddr "yum makecache"
-        ssh -n $ipaddr "yum repolist"
+        ssh -n $ipaddr "yum clean all && yum makecache && yum repolist"
     done
 }
 
@@ -54,7 +52,7 @@ function main() {
 
     echo -e "$CSTART>>config_repos$CEND"
     config_repos
-    
+
     echo -e "$CSTART>>install_agent$CEND"
     install_agent
 
