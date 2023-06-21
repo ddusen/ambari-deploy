@@ -13,10 +13,10 @@
 ## 前提
 
 1. 从公司云盘下载软件包 ambari-parcels.20230618.tar.gz 到脚本执行机器中。
-- http://119.254.145.21:12225/owncloud/index.php/s/wR6tBJApQoCu8qH
-- 如果网盘链接失效，去网盘目录下找该包：03-大数据/05-HDP/ambari-parcels.20230618.tar.gz
+- http://119.254.145.21:12225/owncloud/index.php/s/EiGaWZ15pwbDcOO
+- 如果网盘链接失效，去网盘目录下找该包：03-大数据/04-HDP/ambari-parcels.20230618.tar.gz
 ```bash
-wget -O /opt/ambari-parcels.20230618.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/wR6tBJApQoCu8qH/download
+wget -O /opt/ambari-parcels.20230618.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/EiGaWZ15pwbDcOO/download
 ```
 
 2. 把压缩包解压到 /var/www/html 目录下
@@ -24,6 +24,8 @@ wget -O /opt/ambari-parcels.20230618.tar.gz http://119.254.145.21:12225/owncloud
 mkdir -p /var/www/html
 tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
 ```
+
+> md5: http://119.254.145.21:12225/owncloud/index.php/s/HDEyCWfCiJvOWRJ
 
 ## 一、Ambari 安装
 
