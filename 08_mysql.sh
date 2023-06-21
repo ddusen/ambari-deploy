@@ -60,7 +60,7 @@ function update_database() {
 }
 
 function main() {
-    echo -e "$CSTART>07_mysql.sh$CEND"
+    echo -e "$CSTART>08_mysql.sh$CEND"
 
     echo -e "$CSTART>>download_mysql$CEND"
     download_mysql

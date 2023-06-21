@@ -56,7 +56,7 @@ function restart_chrony() {
 }
 
 function main() {
-    echo -e "$CSTART>06_chrony.sh$CEND"
+    echo -e "$CSTART>07_chrony.sh$CEND"
 
     echo -e "$CSTART>>backup_chrony_config$CEND"
     backup_chrony_config
