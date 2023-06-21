@@ -8,23 +8,33 @@
 set -e 
 source 00_env
 
-# 从httpd私有软件库，下载 mysql8.0
-function download_mysql() {
+function remove_old_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    wget -O /tmp/mysql-8.0.30-require-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0.30-require-rpms.tar.gz
-    wget -O /tmp/mysql-8.0.30-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0.30-bundle-rpms.tar.gz
+    
+    yum remove -y mariadb*
+    yum remove -y mysql*
 }
 
 # 安装 mysql8.0
 function install_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    yum remove -y mariadb*
+    
+    system_version="$(cat /etc/centos-release | sed 's/ //g')"
+    echo -e "$CSTART>>>>$(hostname -I)>$system_version$CEND"
 
-    tar -zxvf /tmp/mysql-8.0.30-require-rpms.tar.gz -C /tmp/
-    yum localinstall -y /tmp/mysql-8.0.30-require-rpms/*.rpm || true # 忽略报错
+    if [[ "$system_version" == RockyLinuxrelease8* ]]; then
+        wget -O /tmp/mysql-8.0-e18-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0-e18-bundle-rpms.tar.gz
+        tar -zxvf /tmp/mysql-8.0-e18-bundle-rpms.tar.gz -C /tmp/
+        yum localinstall -y /tmp/mysql-8.0-e18-bundle-rpms/*.rpm || true # 忽略报错
 
-    tar -zxvf /tmp/mysql-8.0.30-bundle-rpms.tar.gz -C /tmp/
-    yum localinstall -y /tmp/mysql-8.0.30-bundle-rpms/*.rpm || true # 忽略报错
+    elif [[ "$system_version" == CentOSLinuxrelease7* ]]; then
+        wget -O /tmp/mysql-8.0-e17-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0-e17-bundle-rpms.tar.gz
+        tar -zxvf /tmp/mysql-8.0-e17-bundle-rpms.tar.gz -C /tmp/
+        yum localinstall -y /tmp/mysql-8.0-e17-bundle-rpms/*.rpm || true # 忽略报错
+
+    else 
+        echo "系统版本[$system_version]超出脚本处理范围" && false
+    fi
 }
 
 # 启动mysql
@@ -62,8 +72,8 @@ function update_database() {
 function main() {
     echo -e "$CSTART>08_mysql.sh$CEND"
 
-    echo -e "$CSTART>>download_mysql$CEND"
-    download_mysql
+    echo -e "$CSTART>>remove_old_mysql$CEND"
+    remove_old_mysql
 
     echo -e "$CSTART>>install_mysql$CEND"
     install_mysql

@@ -38,6 +38,7 @@ function config_sshpass() {
 
 function main() {	
     echo -e "$CSTART>01_sshpass.sh$CEND"
+
     echo -e "$CSTART>>install_sshpass$CEND"
     install_sshpass
 
