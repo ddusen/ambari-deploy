@@ -22,14 +22,14 @@ function install_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)>$system_version$CEND"
 
     if [[ "$system_version" == RockyLinuxrelease8* ]]; then
-        wget -O /tmp/mysql-8.0-e18-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0-e18-bundle-rpms.tar.gz
-        tar -zxvf /tmp/mysql-8.0-e18-bundle-rpms.tar.gz -C /tmp/
-        yum localinstall -y /tmp/mysql-8.0-e18-bundle-rpms/*.rpm || true # 忽略报错
+        wget -O /tmp/mysql-8.0-el8-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0-el8-bundle-rpms.tar.gz
+        tar -zxvf /tmp/mysql-8.0-el8-bundle-rpms.tar.gz -C /tmp/
+        yum localinstall -y /tmp/mysql-8.0-el8-bundle-rpms/*.rpm || true # 忽略报错
 
     elif [[ "$system_version" == CentOSLinuxrelease7* ]]; then
-        wget -O /tmp/mysql-8.0-e17-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0-e17-bundle-rpms.tar.gz
-        tar -zxvf /tmp/mysql-8.0-e17-bundle-rpms.tar.gz -C /tmp/
-        yum localinstall -y /tmp/mysql-8.0-e17-bundle-rpms/*.rpm || true # 忽略报错
+        wget -O /tmp/mysql-8.0-el7-bundle-rpms.tar.gz $HTTPD_SERVER/others/mysql-8.0-el7-bundle-rpms.tar.gz
+        tar -zxvf /tmp/mysql-8.0-el7-bundle-rpms.tar.gz -C /tmp/
+        yum localinstall -y /tmp/mysql-8.0-el7-bundle-rpms/*.rpm || true # 忽略报错
 
     else 
         echo "系统版本[$system_version]超出脚本处理范围" && false
