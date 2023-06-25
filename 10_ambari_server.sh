@@ -30,15 +30,15 @@ function config_ambari() {
     sed -i "s#TODO_MYSQL_HOST#$MYSQL_HOST#g" /etc/ambari-server/conf/ambari.properties
     echo "$MYSQL_AMBARI_PASSWD" > /etc/ambari-server/conf/password.dat
     
-    # ambari-server setup 
-    # --database=mysql 
-    # --databasehost=localhost 
-    # --databaseport=3306 
-    # --databasename=ambari 
-    # --databaseusername=ambari 
-    # --databasepassword=am@Am123jq 
-    # --jdbc-db=mysql 
-    # --jdbc-driver=/usr/share/java/mysql-connector-java.jar 
+    ambari-server setup \
+        --database=mysql \
+        --databasehost=$MYSQL_HOST \
+        --databaseport=3306 \
+        --databasename=ambari \
+        --databaseusername=ambari \
+        --databasepassword=$MYSQL_AMBARI_PASSWD \
+        --jdbc-db=mysql \
+        --jdbc-driver=/usr/share/java/mysql-connector-java.jar
 }
 
 # 更新数据库
