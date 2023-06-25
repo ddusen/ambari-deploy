@@ -34,6 +34,7 @@ function clean_java() {
 function clean_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     systemctl stop mysql*
+    yum remove -y mariadb*
     yum remove -y mysql*
     yum remove -y MySQL*
     rm -rf /var/lib/mysql*

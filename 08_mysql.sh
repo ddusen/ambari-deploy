@@ -10,7 +10,6 @@ source 00_env
 
 function remove_old_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    
     yum remove -y mariadb*
     yum remove -y mysql*
 }
