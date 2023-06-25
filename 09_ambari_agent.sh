@@ -8,6 +8,23 @@
 set -e 
 source 00_env
 
+# 安装一些基础软件，便于后续操作
+function install_base() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do 
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+
+        system_version=$(ssh -n $ipaddr "cat /etc/centos-release | sed 's/ //g'")
+        echo -e "$CSTART>>>>$ipaddr>$system_version$CEND"
+
+        if [[ "$system_version" == CentOSLinuxrelease7* ]]; then
+            scp rpms/centos7/libtirpc-devel-0.2.4-0.16.el7.x86_64.rpm $ipaddr:/tmp/
+
+            ssh -n $ipaddr "rpm -Uvh /tmp/libtirpc-devel-0.2.4-0.16.el7.x86_64.rpm" || true
+        fi
+    done
+}
+
 # 配置 ambari repos
 function config_repos() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
@@ -49,6 +66,9 @@ function start_agent() {
 
 function main() {
     echo -e "$CSTART>09_ambari_agent.sh$CEND"
+
+    echo -e "$CSTART>>install_base$CEND"
+    install_base
 
     echo -e "$CSTART>>config_repos$CEND"
     config_repos
