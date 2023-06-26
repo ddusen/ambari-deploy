@@ -6,26 +6,24 @@
 - HDP 版本: 3.3.1.0-004
 - MySQL 版本: 8.0
 - Java 版本: 1.8
-- 系统版本: Centos7* / Rocky 8*
+- 系统版本: Centos 7* / Rocky 8*
 
 *****
 
 ## 前提
 
-1. 从公司云盘下载软件包 ambari-parcels.20230618.tar.gz 到脚本执行机器中。
-- http://119.254.145.21:12225/owncloud/index.php/s/EiGaWZ15pwbDcOO
-- 如果网盘链接失效，去网盘目录下找该包：03-大数据/04-HDP/ambari-parcels.20230618.tar.gz
+1. 从公司云盘下载软件包 ambari-parcels.20230625.tar.gz 到脚本执行机器中。
+- http://119.254.145.21:12225/owncloud/index.php/s/B9zMOKVyVB7Bu4z
+- 如果网盘链接失效，去网盘目录下找该包：03-大数据/04-HDP/ambari-parcels.20230625.tar.gz
 ```bash
-wget -O /opt/ambari-parcels.20230618.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/EiGaWZ15pwbDcOO/download
+wget -O /opt/ambari-parcels.20230625.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/B9zMOKVyVB7Bu4z/download
 ```
 
 2. 把压缩包解压到 /var/www/html 目录下
 ```bash
 mkdir -p /var/www/html
-tar -zxvf /opt/ambari-parcels.20230618.tar.gz -C /var/www/html/
+tar -zxvf /opt/ambari-parcels.20230625.tar.gz -C /var/www/html/
 ```
-
-> md5: http://119.254.145.21:12225/owncloud/index.php/s/HDEyCWfCiJvOWRJ
 
 ## 一、Ambari 安装
 
@@ -92,8 +90,6 @@ pip install mysql-python
 
 2. ambari-parcels.6.3.1466458.tar.gz
 ```bash
-[root@ambari html]# tree /var/www/html/ambari-parcels
-
 /var/www/html/ambari-parcels
 |-- ambari
 |   `-- 2.7.6.0-4
@@ -262,15 +258,15 @@ pip install mysql-python
 |       |   |-- openblas-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-devel-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-openmp-0.2.19-4.el7.x86_64.rpm
-|       |   |-- openblas-openmp64-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-openmp64_-0.2.19-4.el7.x86_64.rpm
+|       |   |-- openblas-openmp64-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-Rblas-0.2.19-4.el7.x86_64.rpm
-|       |   |-- openblas-serial64-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-serial64_-0.2.19-4.el7.x86_64.rpm
+|       |   |-- openblas-serial64-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-static-0.2.19-4.el7.x86_64.rpm
 |       |   |-- openblas-threads-0.2.19-4.el7.x86_64.rpm
-|       |   |-- openblas-threads64-0.2.19-4.el7.x86_64.rpm
-|       |   `-- openblas-threads64_-0.2.19-4.el7.x86_64.rpm
+|       |   |-- openblas-threads64_-0.2.19-4.el7.x86_64.rpm
+|       |   `-- openblas-threads64-0.2.19-4.el7.x86_64.rpm
 |       |-- repodata
 |       |   |-- 03caa5dc00c5e38c9d3a33abe86589986f1efb825d982b73dd377889fc70ae2b-filelists.sqlite.bz2
 |       |   |-- 392f74ff6f3c9e0e8ef0b933efd5f9d5b08977dd3396772336ee7d71051d460a-filelists.xml.gz
@@ -292,8 +288,8 @@ pip install mysql-python
     |-- iceberg-spark-runtime-3.3_2.12-1.3.0.jar
     |-- jdk-8u202-linux-x64.tar.gz
     |-- libfb303-0.9.3.jar
-    |-- mysql-8.0.30-bundle-rpms.tar.gz
-    `-- mysql-8.0.30-require-rpms.tar.gz
+    |-- mysql-8.0-el7-bundle-rpms.tar.gz
+    `-- mysql-8.0-el8-bundle-rpms.tar.gz
 
 42 directories, 157 files
 ```
