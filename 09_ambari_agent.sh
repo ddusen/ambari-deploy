@@ -18,7 +18,7 @@ function install_base() {
         echo -e "$CSTART>>>>$ipaddr>$system_version$CEND"
 
         if [[ "$system_version" == RockyLinuxrelease8* ]]; then
-            scp config/my_config.h $ipaddr:/usr/include/mysql/my_config.h
+            scp config/my_config.h $ipaddr:/usr/include/mysql/my_config.h || true
             ssh -n $ipaddr "yum install mysql-devel" || true
         elif [[ "$system_version" == CentOSLinuxrelease7* ]]; then
             scp rpms/centos7/libtirpc-devel-0.2.4-0.16.el7.x86_64.rpm $ipaddr:/tmp/
