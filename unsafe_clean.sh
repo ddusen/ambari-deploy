@@ -157,7 +157,7 @@ function clean_data() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
-        ssh -n $ipaddr "rm -rf $DATA_ROOT"
+        ssh -n $ipaddr "rm -rf ${DATA_ROOT:-/data}/*"
         ssh -n $ipaddr "rm -rf /tmp/*"
     done
 }
