@@ -84,6 +84,7 @@ tar -zxvf /opt/ambari-parcels.20230625.tar.gz -C /var/www/html/
 yum install mysql-devel
 
 source /usr/hdp/current/hue/build/env/bin/activate
+pip uninstall mysqlclient
 pip uninstall mysql-python
 pip install mysql-python
 ```
