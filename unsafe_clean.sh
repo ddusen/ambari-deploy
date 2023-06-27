@@ -56,7 +56,7 @@ function clean_ambari() {
         ssh -n $ipaddr "rm -rf /etc/ambari*"
         ssh -n $ipaddr "rm -rf /var/lib/ambari*"
         ssh -n $ipaddr "rm -rf /var/log/ambari*"
-        ssh -n $ipaddr "rm -rf $DATA_ROOT"
+        ssh -n $ipaddr "rm -rf /etc/yum.repos.d/ambari*"
         ssh -n $ipaddr "systemctl daemon-reload"
     done
 }
