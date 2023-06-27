@@ -47,7 +47,9 @@ function start_mysql() {
 function config_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     #默认初始化密码
-    grep 'temporary password' /var/log/mysqld.log
+    echo "默认密码：$(grep 'temporary password' /var/log/mysqld.log)"
+    echo "新密码：$MYSQL_ROOT_PASSWD"
+    
     #更新密码
     mysql_secure_installation
 
