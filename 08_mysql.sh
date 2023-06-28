@@ -12,6 +12,15 @@ function remove_old_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     yum remove -y mariadb*
     yum remove -y mysql*
+    yum remove -y MySQL*
+    rm -rf /var/lib/mysql*
+    rm -rf /var/log/mysql*
+    rm -rf /usr/lib64/mysql*
+    rm -rf /usr/include/mysql*
+    rm -rf /var/share/mysql*
+    rm -rf /etc/my.cnf
+    rm -rf /root/.mysql_secret
+    rm -rf /root/.mysql_history
 }
 
 # 安装 mysql8.0
@@ -47,24 +56,12 @@ function start_mysql() {
 function config_mysql() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     #默认初始化密码
-    echo "默认密码：$(grep 'temporary password' /var/log/mysqld.log)"
+    default_passwd="$(cat /var/log/mysqld.log | grep 'temporary password' | awk -F ': ' '{print $2}')"
+    echo "默认密码：$default_passwd"
     echo "新密码：$MYSQL_ROOT_PASSWD"
-    
-    #更新密码
-    mysql_secure_installation
 
-    # 手动执行，暂时未能实现自动执行
-    # mysql_secure_installation <<EOF
-    # y
-    # 0
-    # @GennLife2015
-    # @GennLife2015
-    # y
-    # y
-    # y
-    # y
-    # y
-    # EOF
+    # 自动执行
+    printf "n\ny\nn\ny\ny\n" | mysql_secure_installation --password=$default_passwd
 }
 
 # 更新数据库，在 mysql 中创建用户，添加新用户和数据库

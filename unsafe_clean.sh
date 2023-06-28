@@ -38,9 +38,11 @@ function clean_mysql() {
     yum remove -y mysql*
     yum remove -y MySQL*
     rm -rf /var/lib/mysql*
+    rm -rf /var/log/mysql*
+    rm -rf /usr/lib64/mysql*
+    rm -rf /usr/include/mysql*
     rm -rf /var/share/mysql*
     rm -rf /etc/my.cnf
-    rm -rf /var/log/mysql*
     rm -rf /root/.mysql_secret
     rm -rf /root/.mysql_history
 }
