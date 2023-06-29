@@ -81,7 +81,7 @@ tar -zxvf /opt/ambari-parcels.20230625.tar.gz -C /var/www/html/
 ## 三、其它
 1. hue 缺少 MySQL-python
 ```bash
-yum install mysql-devel
+yum install -y mysql-devel
 
 source /usr/hdp/current/hue/build/env/bin/activate
 pip uninstall mysqlclient
