@@ -62,10 +62,10 @@ function main() {
     base_jars
 
     echo -e "$CSTART>>dolphin_jars$CEND"
-    dolphin_jars
+    # dolphin_jars
 
     echo -e "$CSTART>>iceberg_jars$CEND"
-    iceberg_jars
+    # iceberg_jars
 }
 
 main
