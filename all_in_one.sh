@@ -15,11 +15,11 @@ function main() {
     /bin/bash ./03_init.sh
     /bin/bash ./04_httpd.sh
     /bin/bash ./05_java.sh
-    /bin/bash ./06_jars.sh
-    /bin/bash ./07_chrony.sh
-    /bin/bash ./08_mysql.sh
-    /bin/bash ./09_ambari_agent.sh
-    /bin/bash ./10_ambari_server.sh
+    /bin/bash ./06_chrony.sh
+    /bin/bash ./07_mysql.sh
+    /bin/bash ./08_ambari_agent.sh
+    /bin/bash ./09_ambari_server.sh
+    /bin/bash ./10_hdp.sh
 }
 
 main

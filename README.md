@@ -42,27 +42,26 @@ tar -zxvf /opt/ambari-parcels.20230625.tar.gz -C /var/www/html/
 ### 3. 初始化系统环境
 - [./03_init.sh](./03_init.sh)
 
-### 4. 安装 httpd
+### 4. 安装/配置 httpd
 - [./04_httpd.sh](./04_httpd.sh)
 
-### 5. 安装 java
+### 5. 安装/配置 java
 - [./05_java.sh](./05_java.sh)
 
-### 6. 配置 jars
-- [./06_jars.sh](./06_jars.sh)
+### 6. 安装/配置 chrony
+- [./06_chrony.sh](./06_chrony.sh)
 
-### 7. 安装 chrony
-- [./07_chrony.sh](./07_chrony.sh)
+### 7. 安装/配置 mysql
+- [./07_mysql.sh](./07_mysql.sh)
 
-### 8. 安装 mysql
-- [./08_mysql.sh](./08_mysql.sh)
+### 8. 安装/配置 ambari agent
+- [./08_ambari_agent.sh](./08_ambari_agent.sh)
 
-### 9. 安装 ambari agent
-- [./09_ambari_agent.sh](./09_ambari_agent.sh)
+### 09. 安/配置装 ambari server
+- [./09_ambari_server.sh](./09_ambari_server.sh)
 
-### 10. 安装 ambari server
-- [./10_ambari_server.sh](./10_ambari_server.sh)
-
+### 10. 配置 hdp
+- [./10_hdp.sh](./10_hdp.sh)
 
 *****
 

@@ -65,7 +65,7 @@ function restart_chrony() {
 }
 
 function main() {
-    echo -e "$CSTART>07_chrony.sh$CEND"
+    echo -e "$CSTART>06_chrony.sh$CEND"
 
     echo -e "$CSTART>>remove_ntp$CEND"
     remove_ntp

@@ -74,7 +74,7 @@ function update_database() {
 }
 
 function main() {
-    echo -e "$CSTART>08_mysql.sh$CEND"
+    echo -e "$CSTART>07_mysql.sh$CEND"
 
     echo -e "$CSTART>>remove_old_mysql$CEND"
     remove_old_mysql

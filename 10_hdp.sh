@@ -2,14 +2,24 @@
 
 #author: Sen Du
 #email: dusen@gennlife.com
-#created: 2023-06-20 14:00:00
-#updated: 2023-06-20 14:00:00
+#created: 2023-06-30 10:00:00
+#updated: 2023-06-30 10:00:00
 
 set -e 
 source 00_env
 
+# 创建数据目录，赋权
+function config_dir() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do 
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "mkdir -p ${DATA_ROOT:-/data}"
+        ssh -n $ipaddr "chmod -R 777 ${DATA_ROOT:-/data}"
+    done
+}
+
 # 配置一些插件 jars
-function base_jars() {
+function config_jar() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
@@ -24,7 +34,8 @@ function base_jars() {
     done
 }
 
-function dolphin_jars() {
+# 配置 dolphin
+function config_dolphin() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
@@ -44,7 +55,8 @@ function dolphin_jars() {
     done
 }
 
-function iceberg_jars() {
+# 配置 iceberg
+function config_iceberg() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
@@ -56,16 +68,20 @@ function iceberg_jars() {
 }
 
 function main() {
-    echo -e "$CSTART>06_jars.sh$CEND"
+    echo -e "$CSTART>10_hdp.sh$CEND"
 
-    echo -e "$CSTART>>base_jars$CEND"
-    base_jars
+    echo -e "$CSTART>>config_dir$CEND"
+    config_dir
 
-    echo -e "$CSTART>>dolphin_jars$CEND"
-    # dolphin_jars
+    echo -e "$CSTART>>config_jar$CEND"
+    config_jar
+    
+    echo -e "$CSTART>>config_dolphin$CEND"
+    # config_dolphin
 
-    echo -e "$CSTART>>iceberg_jars$CEND"
-    # iceberg_jars
+    echo -e "$CSTART>>config_iceberg$CEND"
+    # config_iceberg
+
 }
 
 main
