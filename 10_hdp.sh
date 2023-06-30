@@ -31,6 +31,7 @@ function config_jar() {
         scp -r libs/commons-httpclient-3.1.jar  $ipaddr:/usr/share/hive/
         scp -r libs/elasticsearch-hadoop-6.3.0.jar  $ipaddr:/usr/share/hive/
         scp -r libs/jaxen-1.2.0.jar  $ipaddr:/usr/share/hive/
+        scp -r libs/libfb303-0.9.3.jar  $ipaddr:/usr/share/hive/
     done
 }
 
