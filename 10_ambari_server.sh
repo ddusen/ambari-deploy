@@ -20,6 +20,12 @@ function install_ambari() {
     yum install -y ambari-server
 }
 
+function config_jar() {
+    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    mkdir -p /usr/share/java
+    cp libs/mysql-connector-java.jar /usr/share/java/mysql-connector-java.jar
+}
+
 # 配置 ambari
 function config_ambari() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
@@ -61,6 +67,9 @@ function main() {
 
     echo -e "$CSTART>>install_ambari$CEND"
     install_ambari
+
+    echo -e "$CSTART>>config_jar$CEND"
+    config_jar
 
     echo -e "$CSTART>>config_ambari$CEND"
     config_ambari
