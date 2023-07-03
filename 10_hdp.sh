@@ -61,10 +61,11 @@ function config_iceberg() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
-
-        ssh -n $ipaddr "mkdir -p /usr/share/hive"
-        ssh -n $ipaddr "wget -O /usr/share/hive/iceberg-hive-runtime-1.3.0.jar $HTTPD_SERVER/others/iceberg-hive-runtime-1.3.0.jar"
-        ssh -n $ipaddr "wget -O /usr/share/hive/libfb303-0.9.3.jar $HTTPD_SERVER/others/libfb303-0.9.3.jar"
+        # 删除旧的
+        ssh -n $ipaddr "rm -rf /usr/hdp/3.3.1.0-004/hive/lib/iceberg-hive-runtime-0.14.1.jar"
+        ssh -n $ipaddr "rm -rf /usr/hdp/3.3.1.0-004/tez/iceberg-hive-runtime-0.14.1.jar"
+        # 复制新的
+        ssh -n $ipaddr "wget -O /usr/share/hive/iceberg-hive-runtime-1.3.0.jar $HTTPD_SERVER/others/iceberg-hive-runtime-1.3.0.jar" || true
     done
 }
 
