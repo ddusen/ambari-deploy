@@ -82,7 +82,7 @@ function main() {
     # config_dolphin
 
     echo -e "$CSTART>>config_iceberg$CEND"
-    config_iceberg
+    # config_iceberg
 
 }
 
