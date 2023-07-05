@@ -59,6 +59,7 @@ function clean_ambari() {
         ssh -n $ipaddr "rm -rf /var/lib/ambari*"
         ssh -n $ipaddr "rm -rf /var/log/ambari*"
         ssh -n $ipaddr "rm -rf /etc/yum.repos.d/ambari*"
+        ssh -n $ipaddr "rm -rf /var/cache/dnf/ambari*"
         ssh -n $ipaddr "systemctl daemon-reload"
     done
 }
@@ -147,11 +148,18 @@ function clean_hadoop() {
         ssh -n $ipaddr "rm -rf /var/log/zookeeper*"
         
         ssh -n $ipaddr "rm -rf /usr/hdp"
+        ssh -n $ipaddr "rm -rf /var/cache/dnf/HDP*"
         ssh -n $ipaddr "rm -rf /usr/share/hive"
         ssh -n $ipaddr "rm -rf /usr/share/java"
-        ssh -n $ipaddr "rm -rf /usr/lib/hadoop"
-        ssh -n $ipaddr "rm -rf /usr/bin/hadoop"
-
+        ssh -n $ipaddr "rm -rf /usr/bin/hadoop*"
+        ssh -n $ipaddr "rm -rf /usr/lib/hadoop*"
+        ssh -n $ipaddr "rm -rf /var/lib/hadoop*"
+        ssh -n $ipaddr "rm -rf /run/hadoop*"
+        ssh -n $ipaddr "rm -rf /usr/bin/hive*"
+        ssh -n $ipaddr "rm -rf /usr/lib/hive*"
+        ssh -n $ipaddr "rm -rf /var/lib/hive*"
+        ssh -n $ipaddr "rm -rf /run/hive*"
+        ssh -n $ipaddr "rm -rf /usr/bin/hdfs*"
         ssh -n $ipaddr "systemctl daemon-reload"
     done
 }
