@@ -149,6 +149,8 @@ function clean_hadoop() {
         ssh -n $ipaddr "rm -rf /usr/hdp"
         ssh -n $ipaddr "rm -rf /usr/share/hive"
         ssh -n $ipaddr "rm -rf /usr/share/java"
+        ssh -n $ipaddr "rm -rf /usr/lib/hadoop"
+        ssh -n $ipaddr "rm -rf /usr/bin/hadoop"
 
         ssh -n $ipaddr "systemctl daemon-reload"
     done
