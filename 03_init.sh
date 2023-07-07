@@ -136,6 +136,27 @@ function disable_swap() {
     done
 }
 
+# 调优 sysctl
+function config_sysctl() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "cp /etc/sysctl.conf /opt/backup/configs_$(date '+%Y%m%d')"
+        scp config/sysctl.conf $ipaddr:/etc/sysctl.conf
+        ssh -n $ipaddr "sysctl -p"
+    done
+}
+
+# 调优 limits
+function config_limits() {
+    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
+    do
+        echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "cp /etc/security/limits.conf /opt/backup/configs_$(date '+%Y%m%d')"
+        scp config/limits.conf $ipaddr:/etc/security/limits.conf
+    done
+}
+
 function main() {
     echo -e "$CSTART>03_init.sh$CEND"
     
@@ -165,6 +186,12 @@ function main() {
 
     echo -e "$CSTART>>disable_swap$CEND"
     disable_swap
+
+    echo -e "$CSTART>>config_sysctl$CEND"
+    config_sysctl
+    
+    echo -e "$CSTART>>config_limits$CEND"
+    config_limits
 }
 
 main
