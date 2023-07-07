@@ -141,8 +141,6 @@ function disable_swap() {
         echo -e "$CSTART>>>>$ipaddr$CEND"
         ssh -n $ipaddr "cp /etc/fstab /opt/backup/configs_$(date '+%Y%m%d')"
         ssh -n $ipaddr "sed -i '/swap / s/^\(.*\)$/#\1/g' /etc/fstab"
-        ssh -n $ipaddr "sed -i '/swappiness/d' /etc/sysctl.conf"
-        ssh -n $ipaddr "echo 'vm.swappiness=0' >> /etc/sysctl.conf"
         ssh -n $ipaddr "swapoff -a"
     done
 }
