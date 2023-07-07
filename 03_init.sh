@@ -142,9 +142,6 @@ function config_limits() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
-        ssh -n $ipaddr "ulimit -Hn 65536" || true
-        ssh -n $ipaddr "ulimit -n 65536" || true
-
         ssh -n $ipaddr "cp /etc/security/limits.conf /opt/backup/configs_$(date '+%Y%m%d')"
         scp config/limits.conf $ipaddr:/etc/security/limits.conf
     done
