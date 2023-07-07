@@ -89,16 +89,6 @@ function disable_selinux() {
     done
 }
 
-# 配置 limits.conf
-function config_limits() {
-    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
-    do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
-        ssh -n $ipaddr "ulimit -Hn 65536" || true
-        ssh -n $ipaddr "ulimit -n 65536" || true
-    done
-}
-
 # 配置 ssh
 function config_ssh() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
@@ -152,6 +142,9 @@ function config_limits() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
+        ssh -n $ipaddr "ulimit -Hn 65536" || true
+        ssh -n $ipaddr "ulimit -n 65536" || true
+
         ssh -n $ipaddr "cp /etc/security/limits.conf /opt/backup/configs_$(date '+%Y%m%d')"
         scp config/limits.conf $ipaddr:/etc/security/limits.conf
     done
@@ -174,9 +167,6 @@ function main() {
 
     echo -e "$CSTART>>disable_selinux$CEND"
     disable_selinux
-
-    echo -e "$CSTART>>config_limits$CEND"
-    config_limits
 
     echo -e "$CSTART>>config_ssh$CEND"
     config_ssh
