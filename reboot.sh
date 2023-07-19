@@ -10,11 +10,12 @@ source 00_env
 
 # 避免误操作，添加输入密码步骤
 function identification() {
-    read -s -p "请输入密码: " pswd
+    read -s -p "请输入密码(该操作有风险，请确保清醒): " pswd
     shapswd=$(echo $pswd | sha1sum | head -c 10)
-    if [[ "$shapswd" == "d5b3776603" ]]; then
+    if [[ "$shapswd" == "e6283c043a" ]]; then
         echo && true
     else
+        echo -e "\033[33m密码错误，程序终止！\033[0m"
         echo && false
     fi
 }
