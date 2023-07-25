@@ -29,12 +29,10 @@ function install_sshpass() {
 
 # 配置免密
 function config_sshpass() {
-    #SSH 在复制公钥时不进行主机密钥检查
-    export SSH_OPTIONS="-o StrictHostKeyChecking=no"
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
-        sshpass -p $passwd ssh-copy-id $ipaddr
+        sshpass -p $passwd ssh-copy-id -o StrictHostKeyChecking=no $ipaddr
     done
 }
 
