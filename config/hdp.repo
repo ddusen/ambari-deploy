@@ -1,9 +1,0 @@
-[HDP-3.3]
-name=HDP-3.3
-baseurl=http://TODO_SERVER_IP/ambari-parcels/hdp/3.3.1.0-004/
-gpgcheck=0
-
-[HDP-UTILS-1.1.0.22]
-name=HDP-UTILS-1.1.0.22
-baseurl=http://TODO_SERVER_IP/ambari-parcels/hdp-utils/1.1.0.22/
-gpgcheck=0

@@ -1,4 +1,4 @@
 [ambari]
 name=ambari
-baseurl=http://TODO_SERVER_IP/ambari-parcels/ambari/2.7.6.0-4
+baseurl=http://TODO_SERVER_IP/ambari-parcels/ambari/TODO_AMBARI_VERSION
 gpgcheck=0

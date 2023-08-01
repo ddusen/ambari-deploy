@@ -41,7 +41,7 @@ function config_chrony_clients() {
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
         scp config/chrony_client $ipaddr:/etc/chrony.conf
-        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LocalIp/g' /etc/chrony.conf"
+        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LOCAL_IP/g' /etc/chrony.conf"
     done
 }
 
@@ -49,7 +49,7 @@ function config_chrony_clients() {
 function config_chrony_server() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
     cp config/chrony_server /etc/chrony.conf
-    sed -i "s/TODO_SERVER_IP/$(echo $LocalIp | awk -F. '{OFS="."; $NF=0; print}')/g" /etc/chrony.conf
+    sed -i "s/TODO_SERVER_IP/$(echo $LOCAL_IP | awk -F. '{OFS="."; $NF=0; print}')/g" /etc/chrony.conf
 }
 
 # 重启 chrony 服务

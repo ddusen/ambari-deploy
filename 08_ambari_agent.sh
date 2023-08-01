@@ -35,7 +35,8 @@ function config_repos() {
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
         scp config/ambari.repo $ipaddr:/etc/yum.repos.d/ambari.repo
-        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LocalIp/g' /etc/yum.repos.d/ambari.repo"
+        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LOCAL_IP/g' /etc/yum.repos.d/ambari.repo"
+        ssh -n $ipaddr "sed -i 's/TODO_AMBARI_VERSION/$AMBARI_VERSION/g' /etc/yum.repos.d/ambari.repo"
         ssh -n $ipaddr "yum clean all && yum makecache && yum repolist"
     done
 }
@@ -55,7 +56,7 @@ function config_agent() {
     do
         echo -e "$CSTART>>>>$ipaddr$CEND"
         scp config/ambari-agent.ini $ipaddr:/etc/ambari-agent/conf/ambari-agent.ini
-        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LocalIp/g' /etc/ambari-agent/conf/ambari-agent.ini"
+        ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LOCAL_IP/g' /etc/ambari-agent/conf/ambari-agent.ini"
     done
 }
 
