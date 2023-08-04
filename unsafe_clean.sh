@@ -165,19 +165,6 @@ function clean_hadoop() {
     done
 }
 
-# 清理用户
-function clean_user() {
-    userlist=(httpfs minio ranger kyuubi kms hdfs cloudera-scm zs liqiang logsearch mapred mysql dusen spark kafka ambari-qa hbase oozie hive postgres zookeeper sqoop tez solr dolphinscheduler saslauth seatunnel yarn-ats HIVE postfix test111 sentry flink admin hue impala yiyuan1 ams infra-solr yarn flume kudu lee dockerroot)
-    cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
-    do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
-        for user in ${userlist[@]}
-        do
-            ssh -n $ipaddr "userdel -r $user" || true
-        done
-    done
-}
-
 # 清理数据
 function clean_data() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
@@ -206,9 +193,6 @@ function main() {
 
     echo -e "$CSTART>>clean_hadoop$CEND"
     clean_hadoop || true
-
-    echo -e "$CSTART>>clean_user$CEND"
-    clean_user || true
 
     echo -e "$CSTART>>clean_data$CEND"
     clean_data || true
