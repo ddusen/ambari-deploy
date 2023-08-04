@@ -172,6 +172,7 @@ function clean_data() {
         echo -e "$CSTART>>>>$ipaddr$CEND"
         ssh -n $ipaddr "rm -rf /data/*"
         ssh -n $ipaddr "rm -rf /hadoop/*"
+        ssh -n $ipaddr "rm -rf /dfs/*"
         ssh -n $ipaddr "rm -rf /tmp/*"
     done
 }
