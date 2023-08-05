@@ -12,7 +12,7 @@ source 00_env
 function remove_ntp() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "yum remove -y ntp" || true
     done
 }
@@ -21,7 +21,7 @@ function remove_ntp() {
 function backup_chrony_config() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "cp /etc/chrony.conf /etc/chrony.conf.bak" || true
     done
 }
@@ -30,7 +30,7 @@ function backup_chrony_config() {
 function install_chrony() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "yum install -y chrony" || true
     done
 }
@@ -39,7 +39,7 @@ function install_chrony() {
 function config_chrony_clients() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         scp config/chrony_client $ipaddr:/etc/chrony.conf
         ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LOCAL_IP/g' /etc/chrony.conf"
     done
@@ -56,7 +56,7 @@ function config_chrony_server() {
 function restart_chrony() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         # 设置 chrony timezone
         ssh -n $ipaddr "timedatectl set-timezone 'Asia/Shanghai'" || true
         ssh -n $ipaddr "systemctl restart chronyd" || true

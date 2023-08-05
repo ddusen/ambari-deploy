@@ -24,7 +24,7 @@ function identification() {
 function clean_java() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "sed -i '/JAVA_HOME/d' /etc/profile"
         ssh -n $ipaddr "rm -rf /opt/jdk1.8.0_202"
         ssh -n $ipaddr "unlink /usr/java/default"
@@ -52,7 +52,7 @@ function clean_mysql() {
 function clean_ambari() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "systemctl stop ambari*"
         ssh -n $ipaddr "yum remove -y ambari*"
         ssh -n $ipaddr "rm -rf /opt/ambari*"
@@ -69,7 +69,7 @@ function clean_ambari() {
 function clean_hadoop() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "yum remove -y atlas-metadata*" || true
         ssh -n $ipaddr "yum remove -y bigtop-jsvc*" || true
         ssh -n $ipaddr "yum remove -y dolphinscheduler*" || true
@@ -169,7 +169,7 @@ function clean_hadoop() {
 function clean_data() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "rm -rf /data/*"
         ssh -n $ipaddr "rm -rf /hadoop/*"
         ssh -n $ipaddr "rm -rf /dfs/*"

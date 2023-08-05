@@ -24,7 +24,7 @@ function identification() {
 function reboot() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND";
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND";
         ssh -n $ipaddr "reboot" || true;
     done
 }

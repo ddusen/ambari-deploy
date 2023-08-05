@@ -12,7 +12,7 @@ source 00_env
 function config_dir() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "mkdir -p ${DATA_ROOT:-/data}"
         ssh -n $ipaddr "chmod -R 777 ${DATA_ROOT:-/data}"
     done
@@ -22,7 +22,7 @@ function config_dir() {
 function config_jar() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
 
         ssh -n $ipaddr "mkdir -p /usr/share/java"
         scp -r libs/mysql-connector-java.jar  $ipaddr:/usr/share/java/
@@ -39,7 +39,7 @@ function config_jar() {
 function config_dolphin() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         dolphin_home="/usr/hdp/$HDP_VERSION/dolphinscheduler"
         # dolphin 目录存在
         if ssh $ipaddr "test -e $dolphin_home"; then
@@ -60,7 +60,7 @@ function config_dolphin() {
 function config_iceberg() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         # 删除旧的
         ssh -n $ipaddr "rm -rf /usr/hdp/3.3.1.0-004/hive/lib/iceberg-hive-runtime-0.14.1.jar"
         ssh -n $ipaddr "rm -rf /usr/hdp/3.3.1.0-004/tez/iceberg-hive-runtime-0.14.1.jar"

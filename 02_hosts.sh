@@ -12,7 +12,7 @@ source 00_env
 function config_hosts() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         scp config/hosts $ipaddr:/etc/
     done
 }
@@ -21,7 +21,7 @@ function config_hosts() {
 function config_hostname() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "hostname $name"
         ssh -n $ipaddr "hostnamectl set-hostname $name"
         ssh -n $ipaddr "echo '$name' > /etc/hostname"

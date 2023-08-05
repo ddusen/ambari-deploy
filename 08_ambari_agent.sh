@@ -12,7 +12,7 @@ source 00_env
 function install_base() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
 
         system_version=$(ssh -n $ipaddr "cat /etc/centos-release | sed 's/ //g'")
         echo -e "$CSTART>>>>$ipaddr>$system_version$CEND"
@@ -33,7 +33,7 @@ function install_base() {
 function config_repos() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         scp config/ambari.repo $ipaddr:/etc/yum.repos.d/ambari.repo
         ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LOCAL_IP/g' /etc/yum.repos.d/ambari.repo"
         ssh -n $ipaddr "sed -i 's/TODO_AMBARI_VERSION/$AMBARI_VERSION/g' /etc/yum.repos.d/ambari.repo"
@@ -45,7 +45,7 @@ function config_repos() {
 function install_agent() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "yum install -y ambari-agent" || true
     done
 }
@@ -54,7 +54,7 @@ function install_agent() {
 function config_agent() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         scp config/ambari-agent.ini $ipaddr:/etc/ambari-agent/conf/ambari-agent.ini
         ssh -n $ipaddr "sed -i 's/TODO_SERVER_IP/$LOCAL_IP/g' /etc/ambari-agent/conf/ambari-agent.ini"
     done
@@ -64,7 +64,7 @@ function config_agent() {
 function start_agent() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "ambari-agent start" || true
     done
 }

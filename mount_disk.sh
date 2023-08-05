@@ -14,7 +14,7 @@ source 00_env
 function show_disk() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "lsblk"
     done
 }
@@ -23,7 +23,7 @@ function show_disk() {
 function format_disk() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "mkfs.xfs /dev/vdb"
         ssh -n $ipaddr "mkfs.xfs /dev/vdc"
     done
@@ -33,7 +33,7 @@ function format_disk() {
 function get_disk_uuid() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "blkid"
     done
 }
@@ -50,7 +50,7 @@ function modify_fstab() {
 function check_modify_fstab() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "cat /etc/fstab"
     done
 }
@@ -59,7 +59,7 @@ function check_modify_fstab() {
 function mount_disk() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "mkdir -p /dfs/dn1"
         ssh -n $ipaddr "mkdir -p /dfs/dn2"
         ssh -n $ipaddr "mount -a"
@@ -69,7 +69,7 @@ function mount_disk() {
 function check_mount() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do 
-        echo -e "$CSTART>>>>$ipaddr$CEND"
+        echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
         ssh -n $ipaddr "df -h"
     done
 }
