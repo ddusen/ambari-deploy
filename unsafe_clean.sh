@@ -170,12 +170,12 @@ function clean_data() {
     cat config/vm_info | grep -v "^#" | grep -v "^$" | while read ipaddr name passwd
     do
         echo -e "$CSTART>>>>$ipaddr [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
-        ssh -n $ipaddr "rm -rf /data/*" || true
-        ssh -n $ipaddr "rm -rf /hadoop/*" || true
-        ssh -n $ipaddr "rm -rf /dfs/*" || true
-        ssh -n $ipaddr "rm -rf /yarn/*" || true
-        ssh -n $ipaddr "rm -rf /impala/*" || true
-        ssh -n $ipaddr "rm -rf /tmp/*" || true
+        ssh -n $ipaddr "rm -rf /data/*"
+        ssh -n $ipaddr "rm -rf /hadoop/*"
+        ssh -n $ipaddr "rm -rf /dfs/*"
+        ssh -n $ipaddr "rm -rf /yarn/*"
+        ssh -n $ipaddr "rm -rf /impala/*"
+        ssh -n $ipaddr "rm -rf /tmp/*"
     done
 }
 
