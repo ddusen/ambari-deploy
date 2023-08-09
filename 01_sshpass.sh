@@ -11,7 +11,7 @@ source 00_env
 # 生成公钥私钥
 function generate_key() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
-    echo n | ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
+    echo n | ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N "" || true
 }
 
 # 安装sshpass
