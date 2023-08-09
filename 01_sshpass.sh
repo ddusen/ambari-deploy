@@ -8,6 +8,12 @@
 set -e 
 source 00_env
 
+# 生成公钥私钥
+function generate_key() {
+    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo n | ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
+}
+
 # 安装sshpass
 function install_sshpass() {
     echo -e "$CSTART>>>>$(hostname -I)$CEND"
@@ -38,6 +44,9 @@ function config_sshpass() {
 
 function main() {	
     echo -e "$CSTART>01_sshpass.sh$CEND"
+
+    echo -e "$CSTART>>generate_key$CEND"
+    generate_key
 
     echo -e "$CSTART>>install_sshpass$CEND"
     install_sshpass
