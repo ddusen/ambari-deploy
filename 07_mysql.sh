@@ -9,7 +9,7 @@ set -e
 source 00_env
 
 function remove_old_mysql() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     yum remove -y mariadb*
     yum remove -y mysql*
     yum remove -y MySQL*
@@ -25,7 +25,7 @@ function remove_old_mysql() {
 
 # 安装 mysql8.0
 function install_mysql() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     
     system_version="$(cat /etc/centos-release | sed 's/ //g')"
     echo -e "$CSTART>>>>$(hostname -I)>$system_version$CEND"
@@ -47,14 +47,14 @@ function install_mysql() {
 
 # 启动mysql
 function start_mysql() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     systemctl start mysqld.service
     systemctl enable mysqld.service
 }
 
 # 配置 mysql8.0
 function config_mysql() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     #默认初始化密码
     default_passwd="$(cat /var/log/mysqld.log | grep 'temporary password' | awk -F ': ' '{print $2}')"
     echo "默认密码：$default_passwd"
@@ -66,7 +66,7 @@ function config_mysql() {
 
 # 更新数据库，在 mysql 中创建用户，添加新用户和数据库
 function update_database() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     #降低密码难度
     mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -e "SET GLOBAL validate_password.policy=LOW"
     #导入常规用户

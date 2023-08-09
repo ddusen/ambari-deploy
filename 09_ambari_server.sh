@@ -10,25 +10,25 @@ source 00_env
 
 # ambari server 依赖 postgres，需要移除旧版本，避免冲突
 function remove_postgres() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     yum remove -y postgres*
 }
 
 # 安装 ambari
 function install_ambari() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     yum install -y ambari-server
 }
 
 function config_jar() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     mkdir -p /usr/share/java
     cp libs/mysql-connector-java.jar /usr/share/java/mysql-connector-java.jar
 }
 
 # 配置 ambari
 function config_ambari() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     ambari-server stop
     
     mkdir -p /etc/ambari-server/conf/
@@ -49,13 +49,13 @@ function config_ambari() {
 
 # 更新数据库
 function update_database() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     mysql -hlocalhost -uroot -p"$MYSQL_ROOT_PASSWD" -Dambari -e "SOURCE /var/lib/ambari-server/resources/Ambari-DDL-MySQL-CREATE.sql"
 }
 
 # 启动 ambari
 function start_ambari() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     ambari-server start
 }
 

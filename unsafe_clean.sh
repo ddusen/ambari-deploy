@@ -33,7 +33,7 @@ function clean_java() {
 
 # 清理 mysql 服务
 function clean_mysql() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     systemctl stop mysql*
     yum remove -y mariadb*
     yum remove -y mysql*

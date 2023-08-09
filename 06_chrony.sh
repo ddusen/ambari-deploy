@@ -47,7 +47,7 @@ function config_chrony_clients() {
 
 # 配置 chrony server
 function config_chrony_server() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     cp config/chrony_server /etc/chrony.conf
     sed -i "s/TODO_SERVER_IP/$(echo $LOCAL_IP | awk -F. '{OFS="."; $NF=0; print}')/g" /etc/chrony.conf
 }

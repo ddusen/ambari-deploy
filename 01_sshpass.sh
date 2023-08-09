@@ -10,13 +10,13 @@ source 00_env
 
 # 生成公钥私钥
 function generate_key() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     echo n | ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N "" || true
 }
 
 # 安装sshpass
 function install_sshpass() {
-    echo -e "$CSTART>>>>$(hostname -I)$CEND"
+    echo -e "$CSTART>>>>$(hostname -I) [$(date +'%Y-%m-%d %H:%M:%S')]$CEND"
     
     system_version="$(cat /etc/centos-release | sed 's/ //g')"
     echo -e "$CSTART>>>>$(hostname -I)>$system_version$CEND"
