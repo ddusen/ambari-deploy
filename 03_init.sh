@@ -99,6 +99,7 @@ function config_ssh() {
         ssh -n $ipaddr "sed -i '/^GSSAPIAuthentication/cGSSAPIAuthentication no' /etc/ssh/sshd_config"
         ssh -n $ipaddr "sed -i '/^GSSAPICleanupCredentials/cGSSAPICleanupCredentials no' /etc/ssh/sshd_config"
         ssh -n $ipaddr "sed -i '/^#MaxStartups/cMaxStartups 10000:30:20000' /etc/ssh/sshd_config"
+        ssh -n $ipaddr "systemctl restart sshd || service sshd restart" || true
     done
 }
 
