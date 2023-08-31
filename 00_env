@@ -1,7 +1,7 @@
 #author: Sen Du
 #email: dusen@gennlife.com
 #created: 2023-06-16 19:00:00
-#updated: 2023-08-01 10:00:00
+#updated: 2023-08-31 10:00:00
 
 
 # 以下为安装 Ambari 所需的环境变量
@@ -10,20 +10,20 @@ export CSTART='\033[36m'
 export CEND='\033[0m'
 
 ## 版本
-export AMBARI_VERSION='2.7.6.0-21'
-export HDP_VERSION='3.3.2.0-001'
+export AMBARI_VERSION='2.7.6.0-22'
+export HDP_VERSION='3.3.2.0-002'
 
 ## 文件名称
-export FILENAME='ambari-parcels.20230801.tar.gz'
+export FILENAME='ambari-parcels.20230831.tar.gz'
 
 ## 中控机 IP：ambari、chrony 的服务端
-export LOCAL_IP='10.0.5.224'
+export LOCAL_IP='10.0.2.224'
 
 ## httpd server address
-export HTTPD_SERVER='http://10.0.5.224/ambari-parcels'
+export HTTPD_SERVER='http://10.0.2.224/ambari-parcels'
 
 ## MySQL
-export MYSQL_HOST='10.0.5.224'
+export MYSQL_HOST='10.0.2.224'
 export MYSQL_ROOT_PASSWD='@GennLife2015'
 export MYSQL_AMBARI_PASSWD='ambaripasswd'
 
