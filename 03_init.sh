@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #author: Sen Du
-#email: dusen@gennlife.com
+#email: dusen.me@gmail.com
 #created: 2023-04-16 10:00:00
 #updated: 2023-05-06 18:00:00
 

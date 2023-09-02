@@ -13,10 +13,10 @@
 ## 前提
 
 1. 从公司云盘下载软件包 ambari-parcels.20230831.tar.gz 到脚本执行机器中。
-- http://119.254.145.21:12225/owncloud/index.php/s/TSgLjsyB54ciyzh
+- http://127.0.0.1:80/owncloud/index.php/s/TSgLjsyB54ciyzh
 - 如果网盘链接失效，去网盘目录下找该包：03-大数据/04-HDP/ambari-parcels.20230831.tar.gz
 ```bash
-wget -O /opt/ambari-parcels.20230831.tar.gz http://119.254.145.21:12225/owncloud/index.php/s/TSgLjsyB54ciyzh/download
+wget -O /opt/ambari-parcels.20230831.tar.gz http://127.0.0.1:80/owncloud/index.php/s/TSgLjsyB54ciyzh/download
 ```
 
 2. 把压缩包解压到 /var/www/html 目录下

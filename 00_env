@@ -1,5 +1,5 @@
 #author: Sen Du
-#email: dusen@gennlife.com
+#email: dusen.me@gmail.com
 #created: 2023-06-16 19:00:00
 #updated: 2023-08-31 10:00:00
 
@@ -24,7 +24,7 @@ export HTTPD_SERVER='http://10.0.2.224/ambari-parcels'
 
 ## MySQL
 export MYSQL_HOST='10.0.2.224'
-export MYSQL_ROOT_PASSWD='@GennLife2015'
+export MYSQL_ROOT_PASSWD='@Passwd2015'
 export MYSQL_AMBARI_PASSWD='ambaripasswd'
 
 ## 默认数据根目录
